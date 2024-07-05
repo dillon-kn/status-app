@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5B2C386CDB00387874 /* FriendStatusView.swift */; };
+		A3187E5E2C386CE600387874 /* FriendStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */; };
+		A354DBBD2C35C6ED00D2AA34 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */; };
 		A36B4F312C2341250045522C /* StatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F302C2341250045522C /* StatusApp.swift */; };
 		A36B4F332C2341250045522C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F322C2341250045522C /* StatusView.swift */; };
 		A36B4F352C2341270045522C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36B4F342C2341270045522C /* Assets.xcassets */; };
@@ -54,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3187E5B2C386CDB00387874 /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
+		A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusViewModel.swift; sourceTree = "<group>"; };
+		A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
 		A36B4F2D2C2341250045522C /* Status.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Status.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36B4F302C2341250045522C /* StatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusApp.swift; sourceTree = "<group>"; };
 		A36B4F322C2341250045522C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 			children = (
 				A36B4F322C2341250045522C /* StatusView.swift */,
 				A3FF15EA2C2DEAA30069F2F8 /* LoginView.swift */,
+				A3187E5B2C386CDB00387874 /* FriendStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +197,7 @@
 			children = (
 				A3FF15E82C2DEA400069F2F8 /* StatusViewViewModel.swift */,
 				A3FF15EC2C2DEAB10069F2F8 /* LoginViewViewModel.swift */,
+				A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 				A36B4F302C2341250045522C /* StatusApp.swift */,
 				A3D07CE82C3485F4000E8A35 /* GoogleService-Info.plist */,
 				A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */,
+				A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -359,9 +368,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3FF15ED2C2DEAB10069F2F8 /* LoginViewViewModel.swift in Sources */,
+				A354DBBD2C35C6ED00D2AA34 /* ColorHex.swift in Sources */,
 				A36B4F332C2341250045522C /* StatusView.swift in Sources */,
 				A36B4F312C2341250045522C /* StatusApp.swift in Sources */,
+				A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */,
 				A3FF15EB2C2DEAA30069F2F8 /* LoginView.swift in Sources */,
+				A3187E5E2C386CE600387874 /* FriendStatusViewModel.swift in Sources */,
 				A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

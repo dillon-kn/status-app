@@ -7,35 +7,9 @@
 
 import SwiftUI
 
-// Extend Color to support hexadecimal color codes
-extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255,
-            opacity: Double(a) / 255
-        )
-    }
-}
-
 struct StatusView: View {
+    @State private var currentStatus: String = "a munch" // State variable to hold the current status
+
     var body: some View {
         VStack {
             // Title section
@@ -49,15 +23,40 @@ struct StatusView: View {
                     .font(.title2)
                     .padding(.bottom, 1)
 
-                Text("a munch")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(8)
+                VStack {
+                    TextEditor(text: $currentStatus)
+                        .padding()
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                        .autocorrectionDisabled()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
+                        .frame(minWidth: 100, maxWidth: .infinity, minHeight: 10, maxHeight: 70) // Dynamic height and minimum width
+                        .multilineTextAlignment(.center)
+                        .onAppear {
+                            UITextView.appearance().backgroundColor = .clear // Makes TextEditor background transparent
+                        }
+                        .onChange(of: currentStatus) { newValue, oldValue in
+                            currentStatus = newValue.replacingOccurrences(of: "\n", with: "")
+                            if newValue.count > 30 {
+                                currentStatus = String(newValue.prefix(30))
+                            }
+                        }
+                    
+                    Button(action: {
+                        // Handle status submission
+                        print("Status submitted: \(currentStatus)")
+                    }) {
+                        Text("Submit")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding(.top)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 10)
             }
-            .padding(.horizontal)
-            .padding(.vertical, 10)
 
             // Friends status section
             VStack(alignment: .leading) {
@@ -77,6 +76,7 @@ struct StatusView: View {
                 .padding(.vertical, 5)
 
                 List {
+                    FriendStatusView(name: "you", status: currentStatus)
                     FriendStatusView(name: "Jonathan", status: "tennis")
                     FriendStatusView(name: "Naveen", status: "recabibrating")
                     FriendStatusView(name: "Shreyas", status: "grinding")
@@ -88,23 +88,6 @@ struct StatusView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(hex: "#eadabc")) // Use your custom color here
         .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct FriendStatusView: View {
-    var name: String
-    var status: String
-
-    var body: some View {
-        HStack {
-            Text(name)
-                .font(.body)
-            Spacer()
-            Text(status)
-                .font(.body)
-                .foregroundColor(.gray)
-        }
-        .padding(.vertical, 5)
     }
 }
 

@@ -15,8 +15,7 @@ struct StatusApp: App {
     
     var body: some Scene {
         WindowGroup {
-            StatusView()
+            LoginView()
         }
     }
 }
-

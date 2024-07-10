@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct StatusApp: App {
     init() {
-        FirebaseApp.configure()
+        FirebaseApp.configure() // Configure Firebase
     }
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            StatusView()
         }
     }
 }

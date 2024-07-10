@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class StatusViewViewModel: ObservableObject {
+    @Published var currentStatus = ""
+    
+    init() {}
+}
+ 

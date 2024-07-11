@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct SButton: View {
+    let title: String
+    let background: Color
+    let action: () -> Void // Take an action that is a function with no return value
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            // Action
+            action()
+        }) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(background)
+                
+                Text(title)
+                    .foregroundColor(.white)
+                    .bold()
+            }
+        }
     }
 }
 
-#Preview {
-    SButton()
-}
+//#Preview {
+//    SButton()
+//}

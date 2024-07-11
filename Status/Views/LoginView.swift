@@ -17,6 +17,8 @@ struct LoginView: View {
                 Spacer()
                 
                 VStack {
+                    Spacer()
+                    
                     Text("status")
                         .font(.system(.largeTitle, design: .serif))
                         .bold()
@@ -24,7 +26,16 @@ struct LoginView: View {
                     Text("what's your status?")
                         .font(.system(.subheadline, design: .serif))
                     
+                        
                     Form {
+                        
+                        if !viewModel.errorMessage.isEmpty {
+                            Text(viewModel.errorMessage)
+                                .foregroundColor(.red)
+                                .font(.system(.callout))
+                                .bold()
+                        }
+                        
                         TextField("Email Address", text: $viewModel.email)
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()
@@ -33,23 +44,18 @@ struct LoginView: View {
                         SecureField("Password", text: $viewModel.password)
                             .textFieldStyle(DefaultTextFieldStyle())
                         
-                        Button(action: {
-                            // Attempt Login
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color(hex: colorModel.forestGreen))
-                                
-                                Text("Log In")
-                                    .foregroundColor(.white)
-                                    .bold()
-                            }
+                        SButton(title: "Log In", background: Color(hex: colorModel.forestGreen)) {
+                            viewModel.login()
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 220)
+                    .frame(width: 300, height: 200)
                     .cornerRadius(10)
-                    .padding(1)
+                    .padding(.top, -20)
+                    .padding(.bottom, -30)
+                    .scrollContentBackground(.hidden)
+                    
+                    Spacer()
                     
                     VStack {
                         Text("New around here?")

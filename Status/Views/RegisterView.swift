@@ -17,6 +17,8 @@ struct RegisterView: View {
                 Spacer()
                 
                 VStack {
+                    Spacer()
+                    
                     Text("status")
                         .font(.system(.largeTitle, design: .serif))
                         .bold()
@@ -52,23 +54,18 @@ struct RegisterView: View {
                         SecureField("Password", text: $viewModel.password)
                             .textFieldStyle(DefaultTextFieldStyle())
                         
-                        Button(action: {
-                            // Attempt Login
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color(hex: colorModel.forestGreen))
-                                
-                                Text("Log In")
-                                    .foregroundColor(.white)
-                                    .bold()
-                            }
+                        SButton(title: "Register", background: Color(hex: colorModel.forestGreen)) {
+                            // ATTEMPT REGISTER
                         }
                         .padding()
                     }
                     .frame(width: 300, height: 420)
                     .cornerRadius(10)
-                    .padding(1)
+                    .padding(.top, -20)
+                    .padding(.bottom, -30)
+                    .scrollContentBackground(.hidden)
+
+                    Spacer()
                     
                     VStack {
                         Text("Have an account?")

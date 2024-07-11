@@ -1,14 +1,14 @@
 //
-//  LoginVIew.swift
+//  RegisterView.swift
 //  Status
 //
-//  Created by Dillon Nguyen on 7/5/24.
+//  Created by Dillon Nguyen on 7/11/24.
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    @StateObject var viewModel = LoginViewViewModel()
+struct RegisterView: View {
+    @StateObject var viewModel = RegisterViewViewModel()
     @StateObject var colorModel = ColorViewModel()
     
     var body: some View {
@@ -25,6 +25,25 @@ struct LoginView: View {
                         .font(.system(.subheadline, design: .serif))
                     
                     Form {
+                        TextField("First Name", text: $viewModel.firstName)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                            .autocorrectionDisabled()
+                        
+                        TextField("Last Name", text: $viewModel.lastName)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                            .autocorrectionDisabled()
+                        
+                        TextField("Username", text: $viewModel.username)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                            .autocorrectionDisabled()
+                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                        
+                        TextField("Phone Number", text: $viewModel.username)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                            .autocorrectionDisabled()
+                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                            .keyboardType(.phonePad) // This sets the keyboard to phone pad
+                        
                         TextField("Email Address", text: $viewModel.email)
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()
@@ -47,15 +66,17 @@ struct LoginView: View {
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 220)
+                    .frame(width: 300, height: 420)
                     .cornerRadius(10)
                     .padding(1)
                     
                     VStack {
-                        Text("New around here?")
-                        NavigationLink("Create an Account", destination: RegisterView())
+                        Text("Have an account?")
+                        
+                        Button("Go to Login") {
+                            // Go to login page
+                        }
                     }
-                    .padding()
                 }
                 Spacer()
             }
@@ -65,10 +86,9 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.all)
         }
     }
+
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
+#Preview {
+    RegisterView()
 }

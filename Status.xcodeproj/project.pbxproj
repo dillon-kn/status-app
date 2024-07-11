@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5B2C386CDB00387874 /* FriendStatusView.swift */; };
-		A3187E5E2C386CE600387874 /* FriendStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */; };
+		A3187E5E2C386CE600387874 /* FriendStatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */; };
 		A3187E602C38765500387874 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5F2C38765500387874 /* LoginView.swift */; };
 		A33E7DF52C3C63A8006E3287 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF42C3C63A8006E3287 /* User.swift */; };
 		A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF62C3C63B3006E3287 /* Status.swift */; };
@@ -37,6 +37,9 @@
 		A3A570CC2C333022009A4624 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3A570CB2C333022009A4624 /* FirebaseRemoteConfigSwift */; };
 		A3A570CE2C333022009A4624 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3A570CD2C333022009A4624 /* FirebaseStorage */; };
 		A3B4AE942C3F108200091529 /* ColorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE932C3F108200091529 /* ColorViewModel.swift */; };
+		A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE952C3FBE5600091529 /* RegisterView.swift */; };
+		A3B4AE982C3FBE6A00091529 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */; };
+		A3B4AE9A2C3FCFFF00091529 /* SButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE992C3FCFFE00091529 /* SButton.swift */; };
 		A3FF15E72C2DE7CA0069F2F8 /* colors.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */; };
 		A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FF15E82C2DEA400069F2F8 /* StatusViewViewModel.swift */; };
 		A3FF15ED2C2DEAB10069F2F8 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FF15EC2C2DEAB10069F2F8 /* LoginViewViewModel.swift */; };
@@ -61,7 +64,7 @@
 
 /* Begin PBXFileReference section */
 		A3187E5B2C386CDB00387874 /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
-		A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusViewModel.swift; sourceTree = "<group>"; };
+		A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusViewViewModel.swift; sourceTree = "<group>"; };
 		A3187E5F2C38765500387874 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A33E7DF42C3C63A8006E3287 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A33E7DF62C3C63B3006E3287 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -78,6 +81,9 @@
 		A36B4F4D2C2341270045522C /* StatusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A3A570B02C331EB2009A4624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3B4AE932C3F108200091529 /* ColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewModel.swift; sourceTree = "<group>"; };
+		A3B4AE952C3FBE5600091529 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		A3B4AE992C3FCFFE00091529 /* SButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SButton.swift; sourceTree = "<group>"; };
 		A3D07CE72C347EC4000E8A35 /* Status.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Status.entitlements; sourceTree = "<group>"; };
 		A3D07CE82C3485F4000E8A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = colors.rtf; sourceTree = "<group>"; };
@@ -196,6 +202,8 @@
 				A36B4F322C2341250045522C /* StatusView.swift */,
 				A3187E5B2C386CDB00387874 /* FriendStatusView.swift */,
 				A3187E5F2C38765500387874 /* LoginView.swift */,
+				A3B4AE952C3FBE5600091529 /* RegisterView.swift */,
+				A3B4AE992C3FCFFE00091529 /* SButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -205,8 +213,9 @@
 			children = (
 				A3FF15E82C2DEA400069F2F8 /* StatusViewViewModel.swift */,
 				A3FF15EC2C2DEAB10069F2F8 /* LoginViewViewModel.swift */,
-				A3187E5D2C386CE600387874 /* FriendStatusViewModel.swift */,
+				A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */,
 				A3B4AE932C3F108200091529 /* ColorViewModel.swift */,
+				A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -383,8 +392,11 @@
 				A36B4F312C2341250045522C /* StatusApp.swift in Sources */,
 				A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */,
 				A33E7DF52C3C63A8006E3287 /* User.swift in Sources */,
-				A3187E5E2C386CE600387874 /* FriendStatusViewModel.swift in Sources */,
+				A3B4AE9A2C3FCFFF00091529 /* SButton.swift in Sources */,
+				A3B4AE982C3FBE6A00091529 /* RegisterViewViewModel.swift in Sources */,
+				A3187E5E2C386CE600387874 /* FriendStatusViewViewModel.swift in Sources */,
 				A3187E602C38765500387874 /* LoginView.swift in Sources */,
+				A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */,
 				A3B4AE942C3F108200091529 /* ColorViewModel.swift in Sources */,
 				A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */,
 			);

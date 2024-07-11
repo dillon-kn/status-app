@@ -32,7 +32,7 @@ struct StatusView: View {
                     }) {
                         Text("Submit")
                             .padding()
-                            .background(Color.blue)
+                            .background(Color(hex: colorModel.forestGreen))
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
@@ -55,6 +55,7 @@ struct StatusView: View {
                         Image(systemName: "plus")
                             .font(.title2)
                             .padding(.trailing)
+                            .foregroundColor(Color(hex: colorModel.forestGreen))
                     }
                 }
                 .padding(.horizontal)
@@ -75,7 +76,7 @@ struct StatusView: View {
         .background(Color(hex: colorModel.beige))
         .edgesIgnoringSafeArea(.all)
         .onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // dismiss keyboard when done
         }
     }
 }

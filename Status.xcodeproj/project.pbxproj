@@ -10,9 +10,13 @@
 		A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5B2C386CDB00387874 /* FriendStatusView.swift */; };
 		A3187E5E2C386CE600387874 /* FriendStatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */; };
 		A3187E602C38765500387874 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3187E5F2C38765500387874 /* LoginView.swift */; };
+		A318F7972C41CC140066E65F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F7962C41CC140066E65F /* Extensions.swift */; };
+		A318F7992C41CE670066E65F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F7982C41CE670066E65F /* MainView.swift */; };
+		A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F79A2C41CE710066E65F /* MainViewViewModel.swift */; };
 		A33E7DF52C3C63A8006E3287 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF42C3C63A8006E3287 /* User.swift */; };
 		A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF62C3C63B3006E3287 /* Status.swift */; };
-		A354DBBD2C35C6ED00D2AA34 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */; };
+		A347DD002C46EE3A00E2F04B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */; };
+		A347DD022C46EE4200E2F04B /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */; };
 		A36B4F312C2341250045522C /* StatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F302C2341250045522C /* StatusApp.swift */; };
 		A36B4F332C2341250045522C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F322C2341250045522C /* StatusView.swift */; };
 		A36B4F352C2341270045522C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36B4F342C2341270045522C /* Assets.xcassets */; };
@@ -66,9 +70,13 @@
 		A3187E5B2C386CDB00387874 /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
 		A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusViewViewModel.swift; sourceTree = "<group>"; };
 		A3187E5F2C38765500387874 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A318F7962C41CC140066E65F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A318F7982C41CE670066E65F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A318F79A2C41CE710066E65F /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		A33E7DF42C3C63A8006E3287 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A33E7DF62C3C63B3006E3287 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
+		A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		A36B4F2D2C2341250045522C /* Status.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Status.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36B4F302C2341250045522C /* StatusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusApp.swift; sourceTree = "<group>"; };
 		A36B4F322C2341250045522C /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -204,6 +212,8 @@
 				A3187E5F2C38765500387874 /* LoginView.swift */,
 				A3B4AE952C3FBE5600091529 /* RegisterView.swift */,
 				A3B4AE992C3FCFFE00091529 /* SButton.swift */,
+				A318F7982C41CE670066E65F /* MainView.swift */,
+				A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +226,8 @@
 				A3187E5D2C386CE600387874 /* FriendStatusViewViewModel.swift */,
 				A3B4AE932C3F108200091529 /* ColorViewModel.swift */,
 				A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */,
+				A318F79A2C41CE710066E65F /* MainViewViewModel.swift */,
+				A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -228,7 +240,7 @@
 				A36B4F302C2341250045522C /* StatusApp.swift */,
 				A3D07CE82C3485F4000E8A35 /* GoogleService-Info.plist */,
 				A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */,
-				A354DBBC2C35C6ED00D2AA34 /* ColorHex.swift */,
+				A318F7962C41CC140066E65F /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -387,17 +399,21 @@
 			files = (
 				A3FF15ED2C2DEAB10069F2F8 /* LoginViewViewModel.swift in Sources */,
 				A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */,
-				A354DBBD2C35C6ED00D2AA34 /* ColorHex.swift in Sources */,
 				A36B4F332C2341250045522C /* StatusView.swift in Sources */,
 				A36B4F312C2341250045522C /* StatusApp.swift in Sources */,
 				A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */,
+				A347DD022C46EE4200E2F04B /* ProfileViewViewModel.swift in Sources */,
 				A33E7DF52C3C63A8006E3287 /* User.swift in Sources */,
 				A3B4AE9A2C3FCFFF00091529 /* SButton.swift in Sources */,
 				A3B4AE982C3FBE6A00091529 /* RegisterViewViewModel.swift in Sources */,
 				A3187E5E2C386CE600387874 /* FriendStatusViewViewModel.swift in Sources */,
+				A347DD002C46EE3A00E2F04B /* ProfileView.swift in Sources */,
+				A318F7972C41CC140066E65F /* Extensions.swift in Sources */,
 				A3187E602C38765500387874 /* LoginView.swift in Sources */,
 				A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */,
 				A3B4AE942C3F108200091529 /* ColorViewModel.swift in Sources */,
+				A318F7992C41CE670066E65F /* MainView.swift in Sources */,
+				A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */,
 				A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

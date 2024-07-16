@@ -65,6 +65,7 @@ struct LoginView: View {
                 }
                 Spacer()
             }
+            // Use .alert for error messages
 //            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(50)
             .background(Color(hex: colorModel.lightCream))

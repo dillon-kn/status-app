@@ -4,6 +4,12 @@ struct StatusView: View {
     @StateObject var viewModel = StatusViewViewModel()
     @StateObject var colorModel = ColorViewModel()
     
+    private let userID: String
+    
+    init(userID: String) {
+        self.userID = userID
+    }
+    
 
     var body: some View {
         VStack {
@@ -30,7 +36,7 @@ struct StatusView: View {
                         // Handle status submission
                         print("Status submitted: \(viewModel.currentStatus)")
                     }) {
-                        Text("Submit")
+                        Text("Update Status")
                             .padding()
                             .background(Color(hex: colorModel.forestGreen))
                             .foregroundColor(.white)
@@ -83,6 +89,6 @@ struct StatusView: View {
 
 struct StatusView_Previews: PreviewProvider {
     static var previews: some View {
-        StatusView()
+        StatusView(userID: "")
     }
 }

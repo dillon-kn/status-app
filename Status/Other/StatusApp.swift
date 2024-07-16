@@ -15,7 +15,7 @@ struct StatusApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            MainView()
                 .preferredColorScheme(.light) // Set the root view to light mode
         }
     }

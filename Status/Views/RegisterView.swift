@@ -35,12 +35,7 @@ struct RegisterView: View {
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()
                         
-                        TextField("Username", text: $viewModel.username)
-                            .textFieldStyle(DefaultTextFieldStyle())
-                            .autocorrectionDisabled()
-                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                        
-                        TextField("Phone Number", text: $viewModel.username)
+                        TextField("Phone Number", text: $viewModel.phoneNumber)
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()
                             .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
@@ -54,28 +49,30 @@ struct RegisterView: View {
                         SecureField("Password", text: $viewModel.password)
                             .textFieldStyle(DefaultTextFieldStyle())
                         
+                        SecureField("Confirm Password", text: $viewModel.confirmPassword)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                        
                         SButton(title: "Register", background: Color(hex: colorModel.forestGreen)) {
-                            // ATTEMPT REGISTER
+                            viewModel.register()
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 420)
+                    .frame(width: 300, height: 450)
                     .cornerRadius(10)
                     .padding(.top, -20)
                     .padding(.bottom, -30)
                     .scrollContentBackground(.hidden)
-
-                    Spacer()
                     
-                    VStack {
-                        Text("Have an account?")
-                        
-                        Button("Go to Login") {
-                            // Go to login page
-                        }
-                    }
+                    Spacer()
                 }
                 Spacer()
+            }
+            .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
+                Button("OK", role: .cancel) {
+                    // Handle Action
+                }
+            } message: { errorMessage in
+                Text(errorMessage)
             }
 //            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(50)

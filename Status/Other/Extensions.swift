@@ -1,8 +1,8 @@
 //
-//  ColorHex.swift
+//  Extensions.swift
 //  Status
 //
-//  Created by Dillon Nguyen on 7/3/24.
+//  Created by Dillon Nguyen on 7/12/24.
 //
 
 import Foundation
@@ -33,5 +33,22 @@ extension Color {
             blue: Double(b) / 255,
             opacity: Double(a) / 255
         )
+    }
+}
+
+
+extension Encodable {
+    func asDict() -> [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else {
+            return [:]
+        }
+        
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return json ?? [:]
+        } catch {
+            return [:]
+        }
     }
 }

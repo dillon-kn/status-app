@@ -8,7 +8,9 @@
 import Foundation
 
 class StatusViewViewModel: ObservableObject {
-    @Published var currentStatus = ""
+    @Published var currentStatus = "✨vibing✨"
+    @Published var showingUpdateStatusView = false
+    
     
     init() {}
 }

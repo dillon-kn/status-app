@@ -44,6 +44,8 @@
 		A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE952C3FBE5600091529 /* RegisterView.swift */; };
 		A3B4AE982C3FBE6A00091529 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */; };
 		A3B4AE9A2C3FCFFF00091529 /* SButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE992C3FCFFE00091529 /* SButton.swift */; };
+		A3F51E962C48455600C62BE2 /* UpdateStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F51E952C48455600C62BE2 /* UpdateStatusView.swift */; };
+		A3F51E9A2C48458A00C62BE2 /* UpdateStatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F51E992C48458A00C62BE2 /* UpdateStatusViewViewModel.swift */; };
 		A3FF15E72C2DE7CA0069F2F8 /* colors.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */; };
 		A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FF15E82C2DEA400069F2F8 /* StatusViewViewModel.swift */; };
 		A3FF15ED2C2DEAB10069F2F8 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FF15EC2C2DEAB10069F2F8 /* LoginViewViewModel.swift */; };
@@ -94,6 +96,8 @@
 		A3B4AE992C3FCFFE00091529 /* SButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SButton.swift; sourceTree = "<group>"; };
 		A3D07CE72C347EC4000E8A35 /* Status.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Status.entitlements; sourceTree = "<group>"; };
 		A3D07CE82C3485F4000E8A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3F51E952C48455600C62BE2 /* UpdateStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusView.swift; sourceTree = "<group>"; };
+		A3F51E992C48458A00C62BE2 /* UpdateStatusViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewViewModel.swift; sourceTree = "<group>"; };
 		A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = colors.rtf; sourceTree = "<group>"; };
 		A3FF15E82C2DEA400069F2F8 /* StatusViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewViewModel.swift; sourceTree = "<group>"; };
 		A3FF15EC2C2DEAB10069F2F8 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				A3B4AE992C3FCFFE00091529 /* SButton.swift */,
 				A318F7982C41CE670066E65F /* MainView.swift */,
 				A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */,
+				A3F51E952C48455600C62BE2 /* UpdateStatusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */,
 				A318F79A2C41CE710066E65F /* MainViewViewModel.swift */,
 				A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */,
+				A3F51E992C48458A00C62BE2 /* UpdateStatusViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */,
 				A36B4F332C2341250045522C /* StatusView.swift in Sources */,
 				A36B4F312C2341250045522C /* StatusApp.swift in Sources */,
+				A3F51E9A2C48458A00C62BE2 /* UpdateStatusViewViewModel.swift in Sources */,
 				A3187E5C2C386CDB00387874 /* FriendStatusView.swift in Sources */,
 				A347DD022C46EE4200E2F04B /* ProfileViewViewModel.swift in Sources */,
 				A33E7DF52C3C63A8006E3287 /* User.swift in Sources */,
@@ -412,6 +419,7 @@
 				A3187E602C38765500387874 /* LoginView.swift in Sources */,
 				A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */,
 				A3B4AE942C3F108200091529 /* ColorViewModel.swift in Sources */,
+				A3F51E962C48455600C62BE2 /* UpdateStatusView.swift in Sources */,
 				A318F7992C41CE670066E65F /* MainView.swift in Sources */,
 				A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */,
 				A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */,

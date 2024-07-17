@@ -12,29 +12,22 @@ struct StatusView: View {
     
 
     var body: some View {
-        VStack {
-            VStack(alignment: .center) {
-                Text("right now, i'm...")
-                    .font(.title2)
-                    .padding(.top, 50)
-
-                VStack {
-                    TextEditor(text: $viewModel.currentStatus)
+        NavigationView {
+            VStack {
+                VStack(alignment: .center) {
+                    Text("right now, i'm...")
+                        .font(.title2)
+                        .padding(.top, 50)
+                    
+                    Text(viewModel.currentStatus)
+                        .font(.system(.largeTitle, design: .serif))
+                        .bold()
                         .padding()
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .frame(minWidth: 100, maxWidth: 350, minHeight: 10, maxHeight: 70)
-                        .multilineTextAlignment(.center)
-                        .onChange(of: viewModel.currentStatus) {
-                            viewModel.currentStatus = viewModel.currentStatus.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\t", with: "")
-                            if viewModel.currentStatus.count > 35 {
-                                viewModel.currentStatus = String(viewModel.currentStatus.prefix(35))
-                            }
-                        }
+                        .foregroundStyle(Color(hex: colorModel.forestGreen))
+
 
                     Button(action: {
-                        // Handle status submission
-                        print("Status submitted: \(viewModel.currentStatus)")
+                        viewModel.showingUpdateStatusView = true
                     }) {
                         Text("Update Status")
                             .padding()
@@ -44,45 +37,49 @@ struct StatusView: View {
                     }
                     .padding(.top)
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 10)
-            }
+                .padding(.vertical, 50)
+                
+                Spacer()
 
-            // Friends status section
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Friends")
-                        .font(.title2)
-                    Spacer()
-                    Button(action: {
-                        // Add friend action
-                        
-                    }) {
-                        Image(systemName: "plus")
+                // Friends status section
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Friends")
                             .font(.title2)
-                            .padding(.trailing)
-                            .foregroundColor(Color(hex: colorModel.forestGreen))
+                        Spacer()
+                        Button(action: {
+                            // Add friend action
+                            
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .padding(.trailing)
+                                .foregroundColor(Color(hex: colorModel.forestGreen))
+                        }
                     }
-                }
-                .padding(.horizontal)
-                .padding(.vertical, 5)
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
 
-                List {
-                    FriendStatusView(name: "you", status: viewModel.currentStatus)
-                    FriendStatusView(name: "Jonathan", status: "tennis")
-                    FriendStatusView(name: "Naveen", status: "recalibrating")
-                    FriendStatusView(name: "Shreyas", status: "grinding")
-                    FriendStatusView(name: "Amogh", status: "amogging")
+                    List {
+                        FriendStatusView(name: "you", status: viewModel.currentStatus)
+                        FriendStatusView(name: "Esaw", status: "odds?")
+                        FriendStatusView(name: "Naveen", status: "recalibrating")
+                        FriendStatusView(name: "Shreyas", status: "grinding")
+                        FriendStatusView(name: "Amogh", status: "amogging")
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
             }
-        }
-        .padding(.top, 30)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(hex: colorModel.beige))
-        .edgesIgnoringSafeArea(.all)
-        .onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // dismiss keyboard when done
+            .fullScreenCover(isPresented: $viewModel.showingUpdateStatusView) {
+                UpdateStatusView()
+            }
+            .padding(.top, 30)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(hex: colorModel.beige))
+            .edgesIgnoringSafeArea(.all)
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // dismiss keyboard when done
+            }
         }
     }
 }

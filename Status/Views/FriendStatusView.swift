@@ -10,6 +10,7 @@ import SwiftUI
 struct FriendStatusView: View {
     var name: String
     var status: String
+    @StateObject var colorModel = ColorViewModel()
 
     var body: some View {
         HStack {

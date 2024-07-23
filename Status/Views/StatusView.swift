@@ -17,15 +17,14 @@ struct StatusView: View {
                 VStack(alignment: .center) {
                     Text("right now, i'm...")
                         .font(.title2)
-                        .padding(.top, 50)
+                        .padding(.top, 20)
                     
                     Text(viewModel.currentStatus)
                         .font(.system(.largeTitle, design: .serif))
                         .bold()
                         .padding()
                         .foregroundStyle(Color(hex: colorModel.forestGreen))
-
-
+                    
                     Button(action: {
                         viewModel.showingUpdateStatusView = true
                     }) {
@@ -71,15 +70,12 @@ struct StatusView: View {
                 }
             }
             .fullScreenCover(isPresented: $viewModel.showingUpdateStatusView) {
-                UpdateStatusView()
+                UpdateStatusView(newStatusPresented: $viewModel.showingUpdateStatusView)
             }
             .padding(.top, 30)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(hex: colorModel.beige))
             .edgesIgnoringSafeArea(.all)
-            .onTapGesture {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // dismiss keyboard when done
-            }
         }
     }
 }

@@ -45,7 +45,7 @@ class RegisterViewViewModel: ObservableObject {
     }
     
     private func insertUserRecord(id: String) {
-        let newUser = User(id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970) // Weird date because Firebase can't directly store normal dates
+        let newUser = User(id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970, friends: []) // Weird date because Firebase can't directly store normal dates
         
         let db = Firestore.firestore()
         

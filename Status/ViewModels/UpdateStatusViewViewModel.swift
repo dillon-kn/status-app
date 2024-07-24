@@ -49,8 +49,6 @@ class UpdateStatusViewViewModel: ObservableObject {
                 self.errorTitle = "Update Error"
                 self.errorMessage = "Error updating status: \(error.localizedDescription)"
                 print("Error updating status: \(error.localizedDescription)")
-            } else {
-                print("Status updated successfully.")
             }
         }
         

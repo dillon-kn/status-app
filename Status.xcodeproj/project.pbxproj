@@ -14,9 +14,10 @@
 		A318F7992C41CE670066E65F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F7982C41CE670066E65F /* MainView.swift */; };
 		A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F79A2C41CE710066E65F /* MainViewViewModel.swift */; };
 		A33E7DF52C3C63A8006E3287 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF42C3C63A8006E3287 /* User.swift */; };
-		A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E7DF62C3C63B3006E3287 /* Status.swift */; };
 		A347DD002C46EE3A00E2F04B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */; };
 		A347DD022C46EE4200E2F04B /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */; };
+		A35B3BE42C515A5E009F23C0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = A35B3BE32C515A5E009F23C0 /* FirebaseDatabase */; };
+		A35B3BE62C515A5E009F23C0 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A35B3BE52C515A5E009F23C0 /* FirebaseDatabaseSwift */; };
 		A36B4F312C2341250045522C /* StatusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F302C2341250045522C /* StatusApp.swift */; };
 		A36B4F332C2341250045522C /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36B4F322C2341250045522C /* StatusView.swift */; };
 		A36B4F352C2341270045522C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36B4F342C2341270045522C /* Assets.xcassets */; };
@@ -76,7 +77,6 @@
 		A318F7982C41CE670066E65F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A318F79A2C41CE710066E65F /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		A33E7DF42C3C63A8006E3287 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A33E7DF62C3C63B3006E3287 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		A347DCFF2C46EE3A00E2F04B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A347DD012C46EE4200E2F04B /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		A36B4F2D2C2341250045522C /* Status.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Status.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A35B3BE62C515A5E009F23C0 /* FirebaseDatabaseSwift in Frameworks */,
 				A3A570CA2C333022009A4624 /* FirebaseRemoteConfig in Frameworks */,
 				A3A570C62C333022009A4624 /* FirebaseMessaging in Frameworks */,
 				A3A570B82C333022009A4624 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -120,6 +121,7 @@
 				A3A570BE2C333022009A4624 /* FirebaseFirestore in Frameworks */,
 				A3A570CC2C333022009A4624 /* FirebaseRemoteConfigSwift in Frameworks */,
 				A3A570B62C333022009A4624 /* FirebaseAnalytics in Frameworks */,
+				A35B3BE42C515A5E009F23C0 /* FirebaseDatabase in Frameworks */,
 				A3A570C02C333022009A4624 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +143,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A35B3BE22C515A5E009F23C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A36B4F242C2341250045522C = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +158,7 @@
 				A36B4F402C2341270045522C /* StatusTests */,
 				A36B4F4A2C2341270045522C /* StatusUITests */,
 				A36B4F2E2C2341250045522C /* Products */,
+				A35B3BE22C515A5E009F23C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				A33E7DF42C3C63A8006E3287 /* User.swift */,
-				A33E7DF62C3C63B3006E3287 /* Status.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +290,8 @@
 				A3A570C92C333022009A4624 /* FirebaseRemoteConfig */,
 				A3A570CB2C333022009A4624 /* FirebaseRemoteConfigSwift */,
 				A3A570CD2C333022009A4624 /* FirebaseStorage */,
+				A35B3BE32C515A5E009F23C0 /* FirebaseDatabase */,
+				A35B3BE52C515A5E009F23C0 /* FirebaseDatabaseSwift */,
 			);
 			productName = Status;
 			productReference = A36B4F2D2C2341250045522C /* Status.app */;
@@ -404,7 +415,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3FF15ED2C2DEAB10069F2F8 /* LoginViewViewModel.swift in Sources */,
-				A33E7DF72C3C63B3006E3287 /* Status.swift in Sources */,
 				A36B4F332C2341250045522C /* StatusView.swift in Sources */,
 				A36B4F312C2341250045522C /* StatusApp.swift in Sources */,
 				A3F51E9A2C48458A00C62BE2 /* UpdateStatusViewViewModel.swift in Sources */,
@@ -761,6 +771,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A35B3BE32C515A5E009F23C0 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3A570B42C332060009A4624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		A35B3BE52C515A5E009F23C0 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3A570B42C332060009A4624 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
 		A3A570B52C333022009A4624 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseAnalytics;

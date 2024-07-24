@@ -50,8 +50,10 @@ struct UpdateStatusView: View {
                     title: "Update Status",
                     background: Color(hex: colorModel.forestGreen)
                 ) {
-                    viewModel.updateStatus()
-                    newStatusPresented = false
+                    if viewModel.canUpdate() {
+                        viewModel.updateStatus()
+                        newStatusPresented = false
+                    }
                 }
                 .padding()
             
@@ -61,6 +63,13 @@ struct UpdateStatusView: View {
             
             Spacer()
 
+        }
+        .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
+            Button("OK", role: .cancel) {
+                // Handle Action
+            }
+        } message: { errorMessage in
+            Text(errorMessage)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(hex: colorModel.beige))

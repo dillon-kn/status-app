@@ -14,5 +14,4 @@ struct User: Codable {
     let email: String
     let phoneNumber: String
     let joined: TimeInterval
-    let friends: [String]
 }

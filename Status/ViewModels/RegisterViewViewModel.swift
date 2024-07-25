@@ -31,8 +31,8 @@ class RegisterViewViewModel: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let userID = result?.user.uid else {
                 if let errorDescription = error?.localizedDescription {
-                            print(errorDescription)
-                        }
+                    print(errorDescription)
+                }
                 return
             }
             print("registering")
@@ -45,12 +45,18 @@ class RegisterViewViewModel: ObservableObject {
     }
     
     private func insertUserRecord(id: String) {
-        let newUser = User(id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970, friends: []) // Weird date because Firebase can't directly store normal dates
+        let newUser = User(id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970) // Weird date because Firebase can't directly store normal dates
         
         let db = Firestore.firestore()
         
         db.collection("users")
             .document(id)
-            .setData(newUser.asDict())
+            .setData(newUser.asDict()) {  error in
+                if let error = error {
+                    print("Error adding user: \(error.localizedDescription)")
+                } else {
+                    print("User \(id) registered with data \(newUser.asDict())")
+                }
+            }
     }
 }

@@ -33,6 +33,7 @@ struct StatusView: View {
                         .bold()
                         .padding()
                         .foregroundStyle(Color(hex: colorModel.forestGreen))
+                        .multilineTextAlignment(.center)
                     
                     Button(action: {
                         viewModel.showingUpdateStatusView = true
@@ -48,7 +49,7 @@ struct StatusView: View {
                 .padding(.vertical, 50)
                 .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
                     Button("OK", role: .cancel) {
-                        // Handle Action
+                        // Message dismisses
                     }
                 } message: { errorMessage in
                     Text(errorMessage)

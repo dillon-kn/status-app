@@ -26,7 +26,7 @@ struct UpdateStatusView: View {
                         .padding()
                         .foregroundColor(Color(hex: colorModel.forestGreen))
                 }
-                .padding(15)
+                .padding(20)
             }
             
             

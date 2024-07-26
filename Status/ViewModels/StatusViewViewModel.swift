@@ -13,6 +13,7 @@ import FirebaseDatabaseSwift
 class StatusViewViewModel: ObservableObject {
     @Published var currentStatus = ""
     @Published var showingUpdateStatusView = false
+    @Published var showingFriendSearchView = false
     @Published var showAlert = false
     @Published var errorTitle = ""
     @Published var errorMessage = ""

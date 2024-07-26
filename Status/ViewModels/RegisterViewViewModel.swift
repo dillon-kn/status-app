@@ -12,6 +12,7 @@ import FirebaseFirestore
 class RegisterViewViewModel: ObservableObject {
     @Published var firstName = ""
     @Published var lastName = ""
+    @Published var username = ""
     @Published var phoneNumber = ""
     @Published var email = ""
     @Published var password = ""
@@ -37,6 +38,7 @@ class RegisterViewViewModel: ObservableObject {
             }
             print("registering")
             self?.insertUserRecord(id: userID)
+            // TODO: Add username to username-uID mapping database
         }
     }
     
@@ -45,7 +47,7 @@ class RegisterViewViewModel: ObservableObject {
     }
     
     private func insertUserRecord(id: String) {
-        let newUser = User(id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970) // Weird date because Firebase can't directly store normal dates
+        let newUser = User(id: id, firstName: firstName, lastName: lastName, username: username, email: email, phoneNumber: phoneNumber, joined: Date().timeIntervalSince1970) // Weird date because Firebase can't directly store normal dates
         
         let db = Firestore.firestore()
         

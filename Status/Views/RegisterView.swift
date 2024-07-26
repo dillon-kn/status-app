@@ -41,6 +41,11 @@ struct RegisterView: View {
                             .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                             .keyboardType(.phonePad) // This sets the keyboard to phone pad
                         
+                        TextField("Username", text: $viewModel.username)
+                            .textFieldStyle(DefaultTextFieldStyle())
+                            .autocorrectionDisabled()
+                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                        
                         TextField("Email Address", text: $viewModel.email)
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()

@@ -64,8 +64,7 @@ struct StatusView: View {
                             .font(.title2)
                         Spacer()
                         Button(action: {
-                            // Add friend action
-                            
+                            viewModel.showingFriendSearchView = true
                         }) {
                             Image(systemName: "plus")
                                 .font(.title2)
@@ -105,6 +104,9 @@ struct StatusView: View {
             }
             .fullScreenCover(isPresented: $viewModel.showingUpdateStatusView) {
                 UpdateStatusView(newStatusPresented: $viewModel.showingUpdateStatusView)
+            }
+            .fullScreenCover(isPresented: $viewModel.showingFriendSearchView) {
+                FriendSearchView(viewPresented: $viewModel.showingFriendSearchView)
             }
             .padding(.top, 30)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

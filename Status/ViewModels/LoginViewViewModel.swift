@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 
 class LoginViewViewModel: ObservableObject {
+    // TODO: ADD USERNAME SIGN IN FUNCTIONALITY
     @Published var email = ""
     @Published var password = ""
     @Published var showAlert = false
@@ -21,6 +22,7 @@ class LoginViewViewModel: ObservableObject {
         guard validateInput() else {
             return
         }
+        // TODO: GET EMAIL FROM USERNAME
         Auth.auth().signIn(withEmail: email, password: password)
     }
     

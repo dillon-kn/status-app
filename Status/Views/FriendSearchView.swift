@@ -44,9 +44,29 @@ struct FriendSearchView: View {
                     .textInputAutocapitalization(.never)
                     .background(Color(hex: colorModel.beige))
                 
+                Button(action: {
+                    print("searching for matching users")
+                    viewModel.search()
+                }) {
+                    Text("Search")
+                        .padding()
+                        .background(Color(hex: colorModel.forestGreen))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom, 50)
+                
                 // TODO: MAKE SOME DEFAULT IF NOTHING BEING SHOWN
+                if viewModel.searchResults.count > 0 {
+                    Text("Results")
+                        .font(.title)
+                }
                 List(viewModel.searchResults) { user in
-                    Text(user.username)
+                    VStack {
+                        Text(user.username)
+                        Text(user.firstName + " " + user.lastName)
+                            .font(.caption)
+                    }
                 }
                 .listStyle(PlainListStyle())
                 

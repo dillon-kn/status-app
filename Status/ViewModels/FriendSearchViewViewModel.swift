@@ -19,65 +19,56 @@ class FriendSearchViewViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var db = Firestore.firestore()
 
-    init() {
-        $searchText
-                .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
-                .removeDuplicates()
-                .sink { [weak self] text in
-                    self?.searchUsers(username: text)
-                }
-                .store(in: &cancellables)
-        }
-
-    func searchUsers(username: String) {
-        guard !username.isEmpty else {
-            self.searchResults = []
+    func search() {
+        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else {
             return
         }
-        
+        print("Searching for: \(trimmed)")
         db.collection("usernames")
-            .whereField("username", isGreaterThanOrEqualTo: username)
-            .whereField("username", isLessThanOrEqualTo: username + "\u{f8ff}")
+            .whereField("username", isGreaterThanOrEqualTo: trimmed)
+            .whereField("username", isLessThanOrEqualTo: trimmed + "\u{f8ff}")
             .getDocuments { [weak self] (querySnapshot, error) in
                 if let error = error {
                     self?.errorMessage = error.localizedDescription
                     self?.showAlert = true
-                    print("Error fetching documents: \(error.localizedDescription)")
                 } else {
-                    print("Query successful.")
+                    print("QuerySnapshot: \(querySnapshot?.documents ?? [])") // Add this line
                     let userIDs = querySnapshot?.documents.compactMap { document in
-                        document.data()["uID"] as? String
+                        document.data()["id"] as? String
                     } ?? []
-                    print("Fetched user IDs: \(userIDs)")
-                    
+                    print("Found user IDs: \(userIDs)")
                     self?.fetchUsers(userIDs: userIDs)
                 }
             }
     }
-    
+
     private func fetchUsers(userIDs: [String]) {
-        guard !userIDs.isEmpty else {
-            self.searchResults = []
-            return
-        }
-        
+        let db = Firestore.firestore()
+        let group = DispatchGroup()
         var fetchedUsers = [User]()
-        let dispatchGroup = DispatchGroup()
-        
+
         for userID in userIDs {
-            dispatchGroup.enter()
-            db.collection("users").document(userID).getDocument { documentSnapshot, error in
-                if let document = documentSnapshot, document.exists {
+            print("Fetching user with ID: \(userID)")
+            group.enter()
+            db.collection("users").document(userID).getDocument { (document, error) in
+                if let document = document, document.exists {
                     if let user = try? document.data(as: User.self) {
                         fetchedUsers.append(user)
+                        print("Fetched user: \(user)")
+                    } else {
+                        print("Failed to decode user for document ID: \(userID)")
                     }
+                } else {
+                    print("No document found for user ID: \(userID)")
                 }
-                dispatchGroup.leave()
+                group.leave()
             }
         }
-        
-        dispatchGroup.notify(queue: .main) {
+
+        group.notify(queue: .main) {
             self.searchResults = fetchedUsers
+            print("All users fetched: \(fetchedUsers)")
         }
     }
 }

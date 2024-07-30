@@ -12,11 +12,13 @@ struct StatusView: View {
     @StateObject var viewModel = StatusViewViewModel()
     @StateObject var colorModel = ColorViewModel()
     @FirestoreQuery var friends: [String] // List of friends of user
+    let userID: String
     
     init(userID: String) {
         self._friends = FirestoreQuery(
             collectionPath: "users/\(userID)/friends"
         )
+        self.userID = userID
     }
     
 
@@ -106,7 +108,7 @@ struct StatusView: View {
                 UpdateStatusView(newStatusPresented: $viewModel.showingUpdateStatusView)
             }
             .fullScreenCover(isPresented: $viewModel.showingFriendSearchView) {
-                FriendSearchView(viewPresented: $viewModel.showingFriendSearchView)
+                FriendSearchView(viewPresented: $viewModel.showingFriendSearchView, currentUserID: userID)
             }
             .padding(.top, 30)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct FriendSearchView: View {
-    @StateObject var viewModel = FriendSearchViewViewModel()
+    @StateObject var viewModel: FriendSearchViewViewModel
     @StateObject var colorModel = ColorViewModel()
     @Binding var viewPresented: Bool
+    
+    init(viewPresented: Binding<Bool>, currentUserID: String) {
+        self._viewPresented = viewPresented
+        self._viewModel = StateObject(wrappedValue: FriendSearchViewViewModel(currentUserID: currentUserID))
+    }
     
     var body: some View {
         NavigationView {
@@ -25,7 +30,7 @@ struct FriendSearchView: View {
                         Image(systemName: "xmark")
                             .font(.title)
                             .padding()
-                            .foregroundColor(Color(hex: colorModel.forestGreen))
+                            .foregroundStyle(Color(hex: colorModel.forestGreen))
                     }
                     .padding(20)
                 }
@@ -51,22 +56,28 @@ struct FriendSearchView: View {
                     Text("Search")
                         .padding()
                         .background(Color(hex: colorModel.forestGreen))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .cornerRadius(10)
                 }
-                .padding(.bottom, 50)
+                .padding(.bottom, 20)
                 
                 // TODO: MAKE SOME DEFAULT IF NOTHING BEING SHOWN
-                if viewModel.searchResults.count > 0 {
-                    Text("Results")
-                        .font(.title)
-                }
                 List(viewModel.searchResults) { user in
-                    VStack {
-                        Text(user.username)
-                        Text(user.firstName + " " + user.lastName)
-                            .font(.caption)
+                    HStack {
+                        VStack {
+                            Text(user.username)
+                            Text(user.firstName + " " + user.lastName)
+                                .font(.footnote)
+                                .foregroundStyle(Color(.secondaryLabel))
+                        }
+                        Spacer()
+                        Button(action: { viewModel.sendFriendRequest(to: user.id)
+                        }) {
+                            Image(systemName: "person.badge.plus")
+                                .foregroundStyle(Color(hex: colorModel.forestGreen))
+                        }
                     }
+                    .background(Color(hex: colorModel.lightCream))
                 }
                 .listStyle(PlainListStyle())
                 
@@ -93,5 +104,5 @@ struct FriendSearchView: View {
         return true
     }, set: {_ in
         
-    }))
+    }), currentUserID: "ee1GLVEWysSZbuayggaj3gFACOD3")
 }

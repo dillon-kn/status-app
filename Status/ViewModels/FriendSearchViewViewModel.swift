@@ -18,6 +18,11 @@ class FriendSearchViewViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private var db = Firestore.firestore()
+    private let currentUserID: String
+    
+    init(currentUserID: String) {
+            self.currentUserID = currentUserID
+    }
 
     func search() {
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -26,8 +31,8 @@ class FriendSearchViewViewModel: ObservableObject {
         }
         print("Searching for: \(trimmed)")
         db.collection("usernames")
-            .whereField("username", isGreaterThanOrEqualTo: trimmed)
-            .whereField("username", isLessThanOrEqualTo: trimmed + "\u{f8ff}")
+            .whereField("username", isGreaterThanOrEqualTo: trimmed) // match all strings lexicographically >= input
+            .whereField("username", isLessThanOrEqualTo: trimmed + "\u{f8ff}") // match all strings lexicographically <= input + letter after z
             .getDocuments { [weak self] (querySnapshot, error) in
                 if let error = error {
                     self?.errorMessage = error.localizedDescription
@@ -69,6 +74,25 @@ class FriendSearchViewViewModel: ObservableObject {
         group.notify(queue: .main) {
             self.searchResults = fetchedUsers
             print("All users fetched: \(fetchedUsers)")
+        }
+    }
+    
+    func sendFriendRequest(to userID: String) {
+        let friendRequestData: [String: Any] = [
+            "from": currentUserID,
+            "to": userID,
+            "status": "pending",
+            "timestamp": Timestamp()
+        ]
+        
+        db.collection("friend_requests").addDocument(data: friendRequestData) { error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                self.showAlert = true
+            } else {
+                self.errorMessage = "Friend request sent successfully"
+                self.showAlert = true
+            }
         }
     }
 }

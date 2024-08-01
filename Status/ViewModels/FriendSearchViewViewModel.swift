@@ -15,13 +15,14 @@ class FriendSearchViewViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorTitle = ""
     @Published var errorMessage = ""
+    @Published var isSendingRequest = false // Track async sendFriendRequest
     
     private var cancellables = Set<AnyCancellable>()
     private var db = Firestore.firestore()
     private let currentUserID: String
     
     init(currentUserID: String) {
-            self.currentUserID = currentUserID
+        self.currentUserID = currentUserID
     }
 
     func search() {
@@ -77,20 +78,72 @@ class FriendSearchViewViewModel: ObservableObject {
         }
     }
     
-    func sendFriendRequest(to userID: String) {
-        let friendRequestData: [String: Any] = [
-            "from": currentUserID,
-            "to": userID,
-            "status": "pending",
-            "timestamp": Timestamp()
-        ]
+    func sendFriendRequest(to userID: String) async {
+        isSendingRequest = true
+        defer {
+            DispatchQueue.main.async {
+                self.isSendingRequest = false
+            }
+        }
         
-        db.collection("friend_requests").addDocument(data: friendRequestData) { error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                self.showAlert = true
-            } else {
+        do {
+            // Check if request from currentUserID to userID exists
+            let fromQuerySnapshot = try await db.collection("friend_requests")
+                .whereField("from", isEqualTo: currentUserID)
+                .whereField("to", isEqualTo: userID)
+                .whereField("status", isEqualTo: "pending")
+                .getDocuments()
+            
+            if !fromQuerySnapshot.isEmpty {
+                await MainActor.run {
+                    self.errorMessage = "Friend request already sent"
+                    self.showAlert = true
+                }
+                return
+            }
+            
+            // Check if request from userID to currentUserID exists
+            let toQuerySnapshot = try await db.collection("friend_requests")
+                .whereField("from", isEqualTo: userID)
+                .whereField("to", isEqualTo: currentUserID)
+                .whereField("status", isEqualTo: "pending")
+                .getDocuments()
+            
+            if !toQuerySnapshot.isEmpty {
+                let userDoc = try await db.collection("users").document(userID).getDocument()
+                if let userFirstName = userDoc.data()?["firstName"] as? String {
+                    await MainActor.run {
+                        self.errorMessage = "\(userFirstName) has already sent you a friend request! Check your friend requests to accept."
+                        self.showAlert = true
+                    }
+                } else {
+                    await MainActor.run {
+                        self.errorTitle = "Database Error"
+                        self.errorMessage = "This user has no first name! Please contact support"
+                        self.showAlert = true
+                    }
+                }
+                return
+            }
+            
+            // Create new friend request
+            let friendRequestData: [String: Any] = [
+                "from": currentUserID,
+                "to": userID,
+                "status": "pending",
+                "timestamp": Timestamp()
+            ]
+            
+            try await db.collection("friend_requests").addDocument(data: friendRequestData)
+            
+            await MainActor.run {
                 self.errorMessage = "Friend request sent successfully"
+                self.showAlert = true
+            }
+            
+        } catch {
+            await MainActor.run {
+                self.errorMessage = error.localizedDescription
                 self.showAlert = true
             }
         }

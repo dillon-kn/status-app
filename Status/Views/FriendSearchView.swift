@@ -70,12 +70,18 @@ struct FriendSearchView: View {
                                 .font(.footnote)
                                 .foregroundStyle(Color(.secondaryLabel))
                         }
+                        
                         Spacer()
-                        Button(action: { viewModel.sendFriendRequest(to: user.id)
+                        
+                        Button(action: {
+                            Task {
+                                await viewModel.sendFriendRequest(to: user.id)
+                            }
                         }) {
                             Image(systemName: "person.badge.plus")
                                 .foregroundStyle(Color(hex: colorModel.forestGreen))
                         }
+                        .disabled(viewModel.isSendingRequest) // Disable button while sending request
                     }
                     .background(Color(hex: colorModel.lightCream))
                 }

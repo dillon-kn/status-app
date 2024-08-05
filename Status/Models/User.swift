@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct User: Codable, Identifiable {
     let id: String
@@ -14,5 +16,5 @@ struct User: Codable, Identifiable {
     let username: String
     let email: String
     let phoneNumber: String
-    let joined: TimeInterval
+    let joined: Timestamp
 }

@@ -25,6 +25,30 @@ struct StatusView: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Spacer()
+                    
+                    NavigationLink(destination: FriendRequestsView()) {
+                        Image(systemName: "person.badge.plus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 23, height: 23)
+                            .foregroundStyle(Color(hex: colorModel.forestGreen))
+                    }
+                        
+                    NavigationLink(destination: ProfileView()) {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 23, height: 23)
+                            .foregroundStyle(Color(hex: colorModel.forestGreen))
+                    }
+                    .padding(.leading, 3)
+                    .padding(.trailing, 3)
+                }
+                .padding(.top, 20)
+                .padding(.trailing)
+                    
                 VStack(alignment: .center) {
                     Text("right now, i'm...")
                         .font(.title2)
@@ -48,7 +72,7 @@ struct StatusView: View {
                     }
                     .padding(.top)
                 }
-                .padding(.vertical, 50)
+                .padding(.vertical, 10)
                 .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
                     Button("OK", role: .cancel) {
                         // Message dismisses
@@ -70,7 +94,7 @@ struct StatusView: View {
                         }) {
                             Image(systemName: "plus")
                                 .font(.title2)
-                                .padding(.trailing)
+//                                .padding(.trailing)
                                 .foregroundColor(Color(hex: colorModel.forestGreen))
                         }
                     }
@@ -78,9 +102,9 @@ struct StatusView: View {
                     .padding(.vertical, 5)
                     
                     if friends.count > 0 {
-                        // TODO
+                        // TODO: LOAD FRIENDS
                     } else {
-                        // GET SOME FRIENDS message, maybe even create an aesthetic view for this (lowkey thinking like a poro type or smth xdd)
+                        // TODO: GET SOME FRIENDS message, maybe even create an aesthetic view for this (lowkey thinking like a poro type or smth xdd)
                         List {
                             FriendStatusView(name: "Esaw", status: "🎰 odds? 🎲")
                             FriendStatusView(name: "Naveen", status: "💭recalibrating")
@@ -111,6 +135,7 @@ struct StatusView: View {
                 FriendSearchView(viewPresented: $viewModel.showingFriendSearchView, currentUserID: userID)
             }
             .padding(.top, 30)
+            .padding(.bottom, 10)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(hex: colorModel.beige))
             .edgesIgnoringSafeArea(.all)

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import FirebaseFirestore
 
-class FriendSearchViewViewModel: ObservableObject {
+@MainActor class FriendSearchViewViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var searchResults = [User]()
     @Published var showAlert = false
@@ -39,7 +39,7 @@ class FriendSearchViewViewModel: ObservableObject {
                     self?.errorMessage = error.localizedDescription
                     self?.showAlert = true
                 } else {
-                    print("QuerySnapshot: \(querySnapshot?.documents ?? [])") // Add this line
+                    print("QuerySnapshot: \(querySnapshot?.documents ?? [])")
                     let userIDs = querySnapshot?.documents.compactMap { document in
                         document.data()["id"] as? String
                     } ?? []
@@ -87,15 +87,25 @@ class FriendSearchViewViewModel: ObservableObject {
         }
         
         do {
+            // Make sure user isn't sending themselves
+            if userID == currentUserID {
+                await MainActor.run {
+                    self.errorTitle = "Invalid Request"
+                    self.errorMessage = "Cannot send friend request to self"
+                    self.showAlert = true
+                }
+                return
+            }
+            
             // Check if request from currentUserID to userID exists
             let fromQuerySnapshot = try await db.collection("friend_requests")
                 .whereField("from", isEqualTo: currentUserID)
                 .whereField("to", isEqualTo: userID)
-                .whereField("status", isEqualTo: "pending")
                 .getDocuments()
             
             if !fromQuerySnapshot.isEmpty {
                 await MainActor.run {
+                    self.errorTitle = "Request Pending"
                     self.errorMessage = "Friend request already sent"
                     self.showAlert = true
                 }
@@ -106,13 +116,13 @@ class FriendSearchViewViewModel: ObservableObject {
             let toQuerySnapshot = try await db.collection("friend_requests")
                 .whereField("from", isEqualTo: userID)
                 .whereField("to", isEqualTo: currentUserID)
-                .whereField("status", isEqualTo: "pending")
                 .getDocuments()
             
             if !toQuerySnapshot.isEmpty {
                 let userDoc = try await db.collection("users").document(userID).getDocument()
                 if let userFirstName = userDoc.data()?["firstName"] as? String {
                     await MainActor.run {
+                        self.errorTitle = "Check friend requests!"
                         self.errorMessage = "\(userFirstName) has already sent you a friend request! Check your friend requests to accept."
                         self.showAlert = true
                     }
@@ -127,14 +137,13 @@ class FriendSearchViewViewModel: ObservableObject {
             }
             
             // Create new friend request
-            let friendRequestData: [String: Any] = [
-                "from": currentUserID,
-                "to": userID,
-                "status": "pending",
-                "timestamp": Timestamp()
-            ]
+            let friendRequest = FriendRequest(
+                        to: userID,
+                        from: currentUserID,
+                        timestamp: Timestamp()
+            )
             
-            try await db.collection("friend_requests").addDocument(data: friendRequestData)
+            try await db.collection("friend_requests").addDocument(data: friendRequest.asDict())
             
             await MainActor.run {
                 self.errorMessage = "Friend request sent successfully"

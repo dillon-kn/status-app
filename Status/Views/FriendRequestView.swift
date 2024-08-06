@@ -11,16 +11,15 @@ import SwiftUI
 struct FriendRequestView: View {
     @StateObject var viewModel = FriendRequestViewViewModel()
     @StateObject var colorModel = ColorViewModel()
-    var firstName: String
-    var lastName: String
-    var username: String
+    @Binding var friendRequests: [FriendRequestDisplay]
+    var request: FriendRequestDisplay
 
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(username)
-                Text(firstName + " " + lastName)
+                Text(request.username)
+                Text(request.firstName + " " + request.lastName)
                     .font(.footnote)
                     .foregroundStyle(Color(.secondaryLabel))
             }
@@ -29,7 +28,7 @@ struct FriendRequestView: View {
             Spacer()
             
             Button(action: {
-                viewModel.acceptReq(senderUsername: username)
+                viewModel.acceptReq(senderUsername: request.username, friendRequests: $friendRequests, requestID: request.id)
             }) {
                 Image(systemName: "checkmark")
                     .foregroundStyle(Color(hex: colorModel.forestGreen))
@@ -37,7 +36,7 @@ struct FriendRequestView: View {
             .padding(.trailing)
             
             Button(action: {
-                viewModel.rejectReq(senderUsername: username)
+                viewModel.rejectReq(senderUsername: request.username, friendRequests: $friendRequests, requestID: request.id)
             }) {
                 Image(systemName: "xmark")
                     .foregroundStyle(Color(hex: colorModel.red))
@@ -58,5 +57,5 @@ struct FriendRequestView: View {
 }
 
 #Preview {
-    FriendRequestView(firstName: "Eugene", lastName: "Tao", username: "etao96")
+    FriendRequestView(friendRequests: .constant([]), request: FriendRequestDisplay(id: " ee1GLVEWysSZbuayggaj3gFACOD3 ", firstName: "B", lastName: "B", username: "bb"))
 }

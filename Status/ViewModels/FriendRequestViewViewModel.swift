@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import SwiftUI
 
 class FriendRequestViewViewModel: ObservableObject {
     @Published var showAlert = false
@@ -31,7 +32,7 @@ class FriendRequestViewViewModel: ObservableObject {
     }
     
     
-    func acceptReq(senderUsername: String) {
+    func acceptReq(senderUsername: String, friendRequests: Binding<[FriendRequestDisplay]>, requestID: String) {
         guard let currentUserID = userID else {
             self.errorTitle = "Authentication Error"
             self.errorMessage = "No user ID found. Please logout and sign back in, or contact support"
@@ -73,8 +74,8 @@ class FriendRequestViewViewModel: ObservableObject {
                 return
             }
             
-            batch?.setData(["friendSince": timestamp], forDocument: curUserFriendsRef)
-            batch?.setData(["friendSince": timestamp], forDocument: senderFriendsRef)
+            batch?.setData(["friendSince": timestamp, "id": senderUserID], forDocument: curUserFriendsRef)
+            batch?.setData(["friendSince": timestamp, "id": currentUserID], forDocument: senderFriendsRef)
             
             // Remove friend request from database
             self?.db.collection("friend_requests").whereField("from", isEqualTo: senderUserID)
@@ -113,9 +114,11 @@ class FriendRequestViewViewModel: ObservableObject {
                     }
                 }
         }
+        // Remove request from View
+        removeRequest(friendRequests: friendRequests, requestID: requestID)
     }
     
-    func rejectReq(senderUsername: String) {
+    func rejectReq(senderUsername: String, friendRequests: Binding<[FriendRequestDisplay]>, requestID: String) {
         guard let currentUserID = userID else {
             self.errorTitle = "Authentication Error"
             self.errorMessage = "No user ID found. Please logout and sign back in, or contact support"
@@ -170,6 +173,18 @@ class FriendRequestViewViewModel: ObservableObject {
                         }
                     }
                 }
+        }
+        // Remove request from View
+        removeRequest(friendRequests: friendRequests, requestID: requestID)
+    }
+    
+    private func removeRequest(friendRequests: Binding<[FriendRequestDisplay]>, requestID: String) {
+        if let index = friendRequests.wrappedValue.firstIndex(where: { $0.id == requestID }) {
+            friendRequests.wrappedValue.remove(at: index)
+        } else {
+            errorTitle = "Display Error"
+            errorMessage = "Could not remove friend request from display. Please contact support if this issue persists"
+            showAlert = true
         }
     }
 }

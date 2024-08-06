@@ -25,9 +25,8 @@ struct FriendRequestsView: View {
                     if !viewModel.friendRequests.isEmpty {
                         ForEach(viewModel.friendRequests) {request in
                             FriendRequestView(
-                                firstName: request.firstName,
-                                lastName: request.lastName,
-                                username: request.username)
+                                friendRequests: $viewModel.friendRequests, request: request
+                            )
                         }
                     } else {
                         // TODO: Make default message/imsage for when no friend reqs

@@ -29,11 +29,22 @@ struct StatusView: View {
                     Spacer()
                     
                     NavigationLink(destination: FriendRequestsView()) {
-                        Image(systemName: "person.badge.plus")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 23, height: 23)
-                            .foregroundStyle(Color(hex: colorModel.forestGreen))
+                        ZStack(alignment: .topTrailing) {
+                            Image(systemName: "person.badge.plus")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 23, height: 23)
+                                .foregroundStyle(Color(hex: colorModel.forestGreen))
+                            
+                            if viewModel.friendRequestsCount > 0 {
+                                Text("\(viewModel.friendRequestsCount)")
+                                    .font(.caption)
+                                    .padding(5)
+                                    .background(Color.red)
+                                    .clipShape(Circle())
+                                    .foregroundColor(.white)
+                            }
+                        }
                     }
                         
                     NavigationLink(destination: ProfileView()) {
@@ -133,6 +144,9 @@ struct StatusView: View {
             }
             .fullScreenCover(isPresented: $viewModel.showingFriendSearchView) {
                 FriendSearchView(viewPresented: $viewModel.showingFriendSearchView, currentUserID: userID)
+            }
+            .onAppear {
+                viewModel.fetchFriendRequestsCount(userID: userID)
             }
             .padding(.top, 30)
             .padding(.bottom, 10)

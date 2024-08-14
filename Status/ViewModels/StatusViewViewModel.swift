@@ -9,6 +9,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseDatabaseSwift
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class StatusViewViewModel: ObservableObject {
     @Published var currentStatus = ""
@@ -17,10 +19,12 @@ class StatusViewViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorTitle = ""
     @Published var errorMessage = ""
+    @Published var friendRequestsCount: Int = 0
     
     private var userID: String?
     private var ref: DatabaseReference?
     private var statusObserverHandle: DatabaseHandle?
+    private var db = Firestore.firestore()
 
     init() {
         // Get current user ID
@@ -89,5 +93,18 @@ class StatusViewViewModel: ObservableObject {
         if let ref = self.ref, let handle = statusObserverHandle {
             ref.removeObserver(withHandle: handle)
         }
+    }
+    
+    func fetchFriendRequestsCount(userID: String) {
+        db.collection("friend_requests").whereField("to", isEqualTo: userID)
+            .getDocuments { [weak self] snapshot, error in
+                if error == nil {
+                    self?.errorTitle = "Database Error"
+                    self?.errorMessage = "Error fetching friend requests. Please contact support if this persists."
+                    self?.showAlert = true
+                    return
+                }
+                self?.friendRequestsCount = snapshot?.documents.count ?? 0
+            }
     }
 }

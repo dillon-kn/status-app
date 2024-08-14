@@ -23,7 +23,15 @@ class LoginViewViewModel: ObservableObject {
             return
         }
         // TODO: GET EMAIL FROM USERNAME
-        Auth.auth().signIn(withEmail: email, password: password)
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                self?.showAlert = true
+                self?.errorTitle = "Login Error"
+                self?.errorMessage = error.localizedDescription
+            }
+          }
+
     }
     
     private func validateInput() -> Bool {

@@ -82,6 +82,7 @@ struct RegisterView: View {
 //            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(50)
             .background(Color(hex: colorModel.lightCream))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
         }
     }

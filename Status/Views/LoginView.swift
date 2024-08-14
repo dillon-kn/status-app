@@ -29,13 +29,6 @@ struct LoginView: View {
                         
                     Form {
                         
-                        if !viewModel.errorMessage.isEmpty {
-                            Text(viewModel.errorMessage)
-                                .foregroundColor(.red)
-                                .font(.system(.callout))
-                                .bold()
-                        }
-                        
                         TextField("Email Address", text: $viewModel.email)
                             .textFieldStyle(DefaultTextFieldStyle())
                             .autocorrectionDisabled()
@@ -65,10 +58,16 @@ struct LoginView: View {
                 }
                 Spacer()
             }
-            // Use .alert for error messages
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
+                Button("OK", role: .cancel) {
+                    // Message dismisses
+                }
+            } message: { errorMessage in
+                Text(errorMessage)
+            }
             .padding(50)
             .background(Color(hex: colorModel.lightCream))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
         }
     }

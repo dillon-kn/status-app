@@ -43,6 +43,9 @@ struct StatusView: View {
                                     .background(Color.red)
                                     .clipShape(Circle())
                                     .foregroundColor(.white)
+                                    .bold()
+                                    .padding(.top, -12)
+                                    .padding(.trailing, -3)
                             }
                         }
                     }

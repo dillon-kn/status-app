@@ -98,7 +98,7 @@ class StatusViewViewModel: ObservableObject {
     func fetchFriendRequestsCount(userID: String) {
         db.collection("friend_requests").whereField("to", isEqualTo: userID)
             .getDocuments { [weak self] snapshot, error in
-                if error == nil {
+                if error != nil {
                     self?.errorTitle = "Database Error"
                     self?.errorMessage = "Error fetching friend requests. Please contact support if this persists."
                     self?.showAlert = true

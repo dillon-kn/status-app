@@ -11,13 +11,9 @@ import FirebaseFirestoreSwift
 struct StatusView: View {
     @StateObject var viewModel = StatusViewViewModel()
     @StateObject var colorModel = ColorViewModel()
-    @FirestoreQuery var friends: [String] // List of friends of user
     let userID: String
     
     init(userID: String) {
-        self._friends = FirestoreQuery(
-            collectionPath: "users/\(userID)/friends"
-        )
         self.userID = userID
     }
     
@@ -44,8 +40,7 @@ struct StatusView: View {
                                     .clipShape(Circle())
                                     .foregroundColor(.white)
                                     .bold()
-                                    .padding(.top, -12)
-                                    .padding(.trailing, -3)
+                                    .offset(x: 3, y: -12)
                             }
                         }
                     }
@@ -114,32 +109,42 @@ struct StatusView: View {
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 5)
+                    .padding(.top, 10)
                     
-                    if friends.count > 0 {
-                        // TODO: LOAD FRIENDS
+                    // TODO: FIX THS SPACING FOR WHEN YOU HAVE NO FRIENDS
+                    if !viewModel.friends.isEmpty {
+                        ForEach(viewModel.friends) {friend in
+                            FriendStatusView(
+                                username: friend.username,
+                                name: friend.name,
+                                status: friend.status
+                            )
+                        }
                     } else {
                         // TODO: GET SOME FRIENDS message, maybe even create an aesthetic view for this (lowkey thinking like a poro type or smth xdd)
                         List {
-                            FriendStatusView(name: "Esaw", status: "🎰 odds? 🎲")
-                            FriendStatusView(name: "Naveen", status: "💭recalibrating")
-                            FriendStatusView(name: "Shreyas", status: "grinding🧑‍🔬")
-                            FriendStatusView(name: "Amogh", status: "amogging🗿")
-                            FriendStatusView(name: "Matteo", status: "what the sigma 🎹")
-                            FriendStatusView(name: "Nash", status: "pickle 🥒")
-                            FriendStatusView(name: "Arun", status: "being tall 💂‍♂️")
-                            FriendStatusView(name: "Dorian", status: "ima touch u 😈😈")
-                            FriendStatusView(name: "Bodo", status: "im swiss 🍫")
-                            FriendStatusView(name: "Gabriel", status: "I😘KARPATHIGHS")
-                            FriendStatusView(name: "Peter", status: "🤑👨‍💻")
-                            FriendStatusView(name: "Rohan", status: "rawdrawging🖼️")
-                            FriendStatusView(name: "Ryan", status: "run 🏃‍♂️💨")
-                            FriendStatusView(name: "Zhangyang", status: "😋 YUMMYYYY 🤤")
-                            FriendStatusView(name: "Crystal", status: "robinson english major")
-                            FriendStatusView(name: "Mau", status: "🤓 googling 🎶")
+                            FriendStatusView(username: "eadhana", name: "Esaw", status: "🎰 odds? 🎲")
+                                .listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "nkannan", name: "Naveen", status: "💭recalibrating").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "sa27", name: "Shreyas", status: "grinding🧑‍🔬").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "sirchaturvedi", name: "Amogh", status: "amogging🗿").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "swisswhistler", name: "Matteo", status: "what the sigma 🎹").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "ncbrown", name: "Nash", status: "pickle 🥒").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "amoorthy", name: "Arun", status: "being tall 💂‍♂️").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "folsom", name: "Dorian", status: "ima touch u 😈😈").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "iswearimswiss", name: "Bodo", status: "im swiss 🍫").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "mllover", name: "Gabriel", status: "I😘KARPATHIGHS").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "piggybank49320", name: "Peter", status: "🤑👨‍💻").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "chachashabada", name: "Rohan", status: "rawdrawging🖼️").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "rizzbizz", name: "Ryan", status: "run 🏃‍♂️💨").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "ohsoyummy", name: "Zhangyang", status: "😋 YUMMYYYY 🤤").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "yearnforpengu", name: "Crystal", status: "yearningforpenguins").listRowInsets(EdgeInsets())
+                            FriendStatusView(username: "elgoogler", name: "Mau", status: "🤓 googling 🎶").listRowInsets(EdgeInsets())
                         }
                         .listStyle(PlainListStyle())
                     }
                     
+                    Spacer()
                 }
             }
             .fullScreenCover(isPresented: $viewModel.showingUpdateStatusView) {
@@ -150,6 +155,9 @@ struct StatusView: View {
             }
             .onAppear {
                 viewModel.fetchFriendRequestsCount(userID: userID)
+                Task {
+                    await viewModel.fetchFriends()
+                }
             }
             .padding(.top, 30)
             .padding(.bottom, 10)
@@ -162,6 +170,6 @@ struct StatusView: View {
 
 struct StatusView_Previews: PreviewProvider {
     static var previews: some View {
-        StatusView(userID: "ee1GLVEWysSZbuayggaj3gFACOD3")
+        StatusView(userID: "ATeZ6gYQzKh5Ih6NMxdYbdRFRU53")
     }
 }

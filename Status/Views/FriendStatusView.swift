@@ -8,25 +8,38 @@
 import SwiftUI
 
 struct FriendStatusView: View {
+    var username: String
     var name: String
     var status: String
     @StateObject var colorModel = ColorViewModel()
 
     var body: some View {
         HStack {
-            Text(name)
-                .font(.body)
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.system(size: 15))
+                Text(username)
+                    .font(.footnote)
+                    .foregroundStyle(Color(.secondaryLabel))
+
+            }
+            .padding(.horizontal, 15)
+
+            
             Spacer()
+            
             Text(status)
                 .font(.body)
                 .foregroundColor(.gray)
+                .padding(.trailing, 15)
         }
-        .padding(.vertical, 5)
+        .padding(.vertical, 10)
+        .background(Color(hex: colorModel.lightCream))
     }
 }
 
 struct FriendStatusView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendStatusView(name:"you", status:"deadge")
+        FriendStatusView(username: "meh", name:"you are so", status:"deadge")
     }
 }

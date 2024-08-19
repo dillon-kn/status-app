@@ -52,6 +52,7 @@
 		A3B4AE962C3FBE5600091529 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE952C3FBE5600091529 /* RegisterView.swift */; };
 		A3B4AE982C3FBE6A00091529 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE972C3FBE6A00091529 /* RegisterViewViewModel.swift */; };
 		A3B4AE9A2C3FCFFF00091529 /* SButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4AE992C3FCFFE00091529 /* SButton.swift */; };
+		A3DA2CFF2C6FD1CE002CFEA7 /* FriendStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DA2CFE2C6FD1CE002CFEA7 /* FriendStatus.swift */; };
 		A3F51E962C48455600C62BE2 /* UpdateStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F51E952C48455600C62BE2 /* UpdateStatusView.swift */; };
 		A3F51E9A2C48458A00C62BE2 /* UpdateStatusViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F51E992C48458A00C62BE2 /* UpdateStatusViewViewModel.swift */; };
 		A3FF15E72C2DE7CA0069F2F8 /* colors.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */; };
@@ -110,6 +111,7 @@
 		A3B4AE992C3FCFFE00091529 /* SButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SButton.swift; sourceTree = "<group>"; };
 		A3D07CE72C347EC4000E8A35 /* Status.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Status.entitlements; sourceTree = "<group>"; };
 		A3D07CE82C3485F4000E8A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3DA2CFE2C6FD1CE002CFEA7 /* FriendStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatus.swift; sourceTree = "<group>"; };
 		A3F51E952C48455600C62BE2 /* UpdateStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusView.swift; sourceTree = "<group>"; };
 		A3F51E992C48458A00C62BE2 /* UpdateStatusViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStatusViewViewModel.swift; sourceTree = "<group>"; };
 		A3FF15E62C2DE7CA0069F2F8 /* colors.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = colors.rtf; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				A33E7DF42C3C63A8006E3287 /* User.swift */,
 				A340E0592C5EFDF3004B5876 /* FriendRequestDisplay.swift */,
 				A333F24A2C614E76008F439B /* FriendRequest.swift */,
+				A3DA2CFE2C6FD1CE002CFEA7 /* FriendStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */,
 				A3952DBB2C5BFEF0005AF242 /* FriendRequestsViewViewModel.swift in Sources */,
 				A337A0382C540F7300C55701 /* FriendSearchView.swift in Sources */,
+				A3DA2CFF2C6FD1CE002CFEA7 /* FriendStatus.swift in Sources */,
 				A3FF15E92C2DEA400069F2F8 /* StatusViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,6 +628,7 @@
 				CODE_SIGN_ENTITLEMENTS = Status/Status.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Status/Preview Content\"";
 				DEVELOPMENT_TEAM = M5W95YYYF8;
 				ENABLE_PREVIEWS = YES;

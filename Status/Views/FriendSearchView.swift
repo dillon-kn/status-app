@@ -97,6 +97,9 @@ struct FriendSearchView: View {
             } message: { errorMessage in
                 Text(errorMessage)
             }
+            .onTapGesture {
+                hideKeyboard()
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(hex: colorModel.beige))
             .edgesIgnoringSafeArea(.all)

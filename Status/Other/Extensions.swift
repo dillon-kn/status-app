@@ -8,6 +8,13 @@
 import Foundation
 import SwiftUI
 
+// Keyboard Dismiss on Gesture
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 // Extend Color to support hexadecimal color codes
 extension Color {
     init(hex: String) {

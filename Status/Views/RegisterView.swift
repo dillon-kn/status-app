@@ -79,11 +79,18 @@ struct RegisterView: View {
             } message: { errorMessage in
                 Text(errorMessage)
             }
-//            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onTapGesture {
+                print("Dismissing keyboard")
+                hideKeyboard()
+            }
             .padding(50)
             .background(Color(hex: colorModel.lightCream))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
+        }
+        .onTapGesture {
+            print("Dismissing keyboard")
+            hideKeyboard()
         }
     }
 

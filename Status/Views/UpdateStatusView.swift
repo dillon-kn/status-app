@@ -74,9 +74,9 @@ struct UpdateStatusView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(hex: colorModel.beige))
         .edgesIgnoringSafeArea(.all)
-//        .onTapGesture {
-//            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // dismiss keyboard when done
-//        }
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
 }
 

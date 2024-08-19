@@ -239,8 +239,8 @@ class StatusViewViewModel: ObservableObject {
 
             for doc in friendDocs.documents {
                 if let friendID = doc.data()["id"] as? String {
+                    // Get friend data
                     let friendDoc = try await db.collection("users").document(friendID).getDocument()
-
                     guard let friendData = friendDoc.data(),
                           let firstName = friendData["firstName"] as? String,
                           let lastName = friendData["lastName"] as? String,
@@ -251,17 +251,24 @@ class StatusViewViewModel: ObservableObject {
 
                     // Retrieve friend's status from Realtime Database
                     let friendRef = Database.database().reference().child("users").child(friendID)
-                    friendRef.observe(DataEventType.value, with: { snapshot in
+                    friendRef.observe(DataEventType.value, with: { [weak self] snapshot in
                         guard let value = snapshot.value as? [String: Any],
                               let status = value["status"] as? String else {
-                            print("Could not find status for \(friendID), friend of \(self.userID ?? "")")
+                            print("Could not find status for \(friendID), friend of \(self?.userID ?? "")")
                             return
                         }
 
                         let friend = FriendStatus(id: friendID, username: username, name: "\(firstName) \(lastName)", status: status)
-                        DispatchQueue.main.async {
-                            friends.append(friend)
-                            self.friends = friends
+                        // Update the friends array on the main thread
+                        Task { @MainActor in
+                            if let index = friends.firstIndex(where: { $0.id == friendID }) {
+                                // Update the existing friend's status
+                                friends[index] = friend
+                            } else {
+                                // Append new friend
+                                friends.append(friend)
+                            }
+                            self?.friends = friends
                         }
                     })
                 }
@@ -270,89 +277,6 @@ class StatusViewViewModel: ObservableObject {
             triggerAlert(title: "Error Retrieving Friends", message: error.localizedDescription)
         }
     }
-    
-    
-//    @MainActor
-//    func fetchFriends() async {
-//        guard let currentUserID = userID else {
-//            triggerAlert(title: "Initialization Error", message: "No user ID found. Please logout and sign back in, or contact support")
-//            return
-//        }
-//        
-//        do {
-//            let friendDocs = try await db.collection("users").document(currentUserID).collection("friends").getDocuments()
-//            var friends: [FriendStatus] = []
-//            
-//            for doc in friendDocs.documents {
-//                guard let friendID = doc.data()["id"] as? String else { continue }
-//                let friendData = try await fetchFriendData(friendID: friendID)
-//                let friendStatus = try await fetchFriendStatus(friendID: friendID)
-//                
-//                let friend = FriendStatus(id: friendID, username: friendData.username, name: "\(friendData.firstName) \(friendData.lastName)", status: friendStatus)
-//                friends.append(friend)
-//            }
-//            
-//            self.friends = friends
-//        } catch {
-//            triggerAlert(title: "Database Error", message: error.localizedDescription)
-//        }
-//    }
-//
-//    
-//    private func fetchFriendData(friendID: String) async throws -> (firstName: String, lastName: String, username: String) {
-//        let friendDoc = try await db.collection("users").document(friendID).getDocument()
-//        guard let friendData = friendDoc.data(),
-//              let firstName = friendData["firstName"] as? String,
-//              let lastName = friendData["lastName"] as? String,
-//              let username = friendData["username"] as? String else {
-//            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to retrieve friend data"])
-//        }
-//        return (firstName, lastName, username)
-//    }
-//    
-//    private func fetchFriendStatus(friendID: String) async throws -> String {
-//        let friendRef = Database.database().reference().child("users").child(friendID)
-//        var friendStatus: String = ""
-//        // Swift function that allows for async closure
-//        let statusSnapshot = friendRef.observe(DataEventType.value, with: { snapshot in
-//            guard let value = snapshot.value as? [String: Any],
-//                  let status = value["status"] as? String else {
-//                self.triggerAlert(title: "Realtime Database Error", message: "Could not find friend's status.")
-//                return
-//            }
-//            friendStatus = status
-//        })
-//        if friendStatus == "" {
-//            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No status found for friend"])
-//        }
-//        return friendStatus
-//    }
-//        
-//    // This function sets up a listener for real-time updates
-//    func observeFriendsStatusUpdates(userID: String) {
-//        let friendsRef = Database.database().reference().child("users").child(userID).child("friends")
-//        
-//        friendsRef.observe(.value) { snapshot in
-//            var updatedFriends = [FriendStatus]()
-//            
-//            for child in snapshot.children.allObjects.compactMap({ $0 as? DataSnapshot }) {
-//                if let friendData = child.value as? [String: Any],
-//                   let friendID = friendData["id"] as? String,
-//                   let friendName = friendData["name"] as? String,
-//                   let friendUsername = friendData["username"] as? String,
-//                   let friendStatus = friendData["status"] as? String {
-//                    let friend = FriendStatus(id: friendID, name: friendName, username: friendUsername, status: friendStatus)
-//                    updatedFriends.append(friend)
-//                }
-//            }
-//            
-//            // Update your @Published property with the new friends list
-//            DispatchQueue.main.async {
-//                self.friends = updatedFriends
-//            }
-//        }
-//    }
-
 
     
     func fetchFriendRequestsCount(userID: String) {

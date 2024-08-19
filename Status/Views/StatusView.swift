@@ -113,13 +113,18 @@ struct StatusView: View {
                     
                     // TODO: FIX THS SPACING FOR WHEN YOU HAVE NO FRIENDS
                     if !viewModel.friends.isEmpty {
-                        ForEach(viewModel.friends) {friend in
-                            FriendStatusView(
-                                username: friend.username,
-                                name: friend.name,
-                                status: friend.status
-                            )
+                        List {
+                            ForEach(viewModel.friends) {friend in
+                                FriendStatusView(
+                                    username: friend.username,
+                                    name: friend.name,
+                                    status: friend.status
+                                )
+                                .listRowInsets(EdgeInsets())
+                            }
                         }
+                        .listStyle(PlainListStyle())
+
                     } else {
                         // TODO: GET SOME FRIENDS message, maybe even create an aesthetic view for this (lowkey thinking like a poro type or smth xdd)
                         List {

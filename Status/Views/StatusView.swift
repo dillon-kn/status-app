@@ -45,7 +45,7 @@ struct StatusView: View {
                         }
                     }
                         
-                    NavigationLink(destination: ProfileView()) {
+                    NavigationLink(destination: ProfileView(userID: userID)) {
                         Image(systemName: "person.circle")
                             .resizable()
                             .scaledToFit()

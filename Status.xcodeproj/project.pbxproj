@@ -12,6 +12,8 @@
 		A318F7972C41CC140066E65F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F7962C41CC140066E65F /* Extensions.swift */; };
 		A318F7992C41CE670066E65F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F7982C41CE670066E65F /* MainView.swift */; };
 		A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318F79A2C41CE710066E65F /* MainViewViewModel.swift */; };
+		A32BC41B2C75454700394422 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32BC41A2C75454700394422 /* SettingsView.swift */; };
+		A32BC41D2C75454F00394422 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32BC41C2C75454F00394422 /* SettingsViewViewModel.swift */; };
 		A333F24B2C614E76008F439B /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A333F24A2C614E76008F439B /* FriendRequest.swift */; };
 		A337A0382C540F7300C55701 /* FriendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337A0372C540F7300C55701 /* FriendSearchView.swift */; };
 		A337A03A2C540F7F00C55701 /* FriendSearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A337A0392C540F7F00C55701 /* FriendSearchViewViewModel.swift */; };
@@ -77,12 +79,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A32BC4192C753E2A00394422 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A3187E5B2C386CDB00387874 /* FriendStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendStatusView.swift; sourceTree = "<group>"; };
 		A3187E5F2C38765500387874 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A318F7962C41CC140066E65F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A318F7982C41CE670066E65F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A318F79A2C41CE710066E65F /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		A32BC4032C753E2800394422 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A32BC4052C753E2800394422 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A32BC41A2C75454700394422 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A32BC41C2C75454F00394422 /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
 		A333F24A2C614E76008F439B /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		A337A0372C540F7300C55701 /* FriendSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchView.swift; sourceTree = "<group>"; };
 		A337A0392C540F7F00C55701 /* FriendSearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchViewViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +181,8 @@
 		A35B3BE22C515A5E009F23C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A32BC4032C753E2800394422 /* WidgetKit.framework */,
+				A32BC4052C753E2800394422 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +271,7 @@
 				A337A0372C540F7300C55701 /* FriendSearchView.swift */,
 				A3952DB82C5BFEE4005AF242 /* FriendRequestsView.swift */,
 				A3952DBC2C5BFF30005AF242 /* FriendRequestView.swift */,
+				A32BC41A2C75454700394422 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +289,7 @@
 				A337A0392C540F7F00C55701 /* FriendSearchViewViewModel.swift */,
 				A3952DBA2C5BFEF0005AF242 /* FriendRequestsViewViewModel.swift */,
 				A3952DC02C5D7338005AF242 /* FriendRequestViewViewModel.swift */,
+				A32BC41C2C75454F00394422 /* SettingsViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -294,6 +317,8 @@
 				A36B4F292C2341250045522C /* Sources */,
 				A36B4F2A2C2341250045522C /* Frameworks */,
 				A36B4F2B2C2341250045522C /* Resources */,
+				A32BC3FD2C74707E00394422 /* ShellScript */,
+				A32BC4192C753E2A00394422 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -433,6 +458,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A32BC3FD2C74707E00394422 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A36B4F292C2341250045522C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -459,6 +509,8 @@
 				A3B4AE942C3F108200091529 /* ColorViewModel.swift in Sources */,
 				A3952DB92C5BFEE4005AF242 /* FriendRequestsView.swift in Sources */,
 				A3F51E962C48455600C62BE2 /* UpdateStatusView.swift in Sources */,
+				A32BC41D2C75454F00394422 /* SettingsViewViewModel.swift in Sources */,
+				A32BC41B2C75454700394422 /* SettingsView.swift in Sources */,
 				A318F7992C41CE670066E65F /* MainView.swift in Sources */,
 				A318F79B2C41CE710066E65F /* MainViewViewModel.swift in Sources */,
 				A3952DBB2C5BFEF0005AF242 /* FriendRequestsViewViewModel.swift in Sources */,

@@ -48,9 +48,7 @@ class ProfileViewViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
         } catch {
-            showAlert = true
-            errorTitle = "Error Logging Out"
-            errorMessage = "Please contact support"
+            print("Error Logging Out")
         }
     }
 }

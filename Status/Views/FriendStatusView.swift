@@ -29,7 +29,7 @@ struct FriendStatusView: View {
             Spacer()
             
             Text(status)
-                .font(.body)
+                .font(.system(size: 15))
                 .foregroundColor(.gray)
                 .padding(.trailing, 15)
         }

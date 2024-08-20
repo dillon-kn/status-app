@@ -10,13 +10,20 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var viewModel = LoginViewViewModel()
     @StateObject var colorModel = ColorViewModel()
+    @FocusState private var focusedField: Field?
+    
+    enum Field {
+        case email, password
+    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                
-                VStack {
+            ZStack {
+                Color(hex: colorModel.beige)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                VStack(spacing: 10) {
+                    
                     Spacer()
                     
                     Text("status")
@@ -25,58 +32,62 @@ struct LoginView: View {
                     
                     Text("what's your status?")
                         .font(.system(.subheadline, design: .serif))
+                        .padding(.bottom, 15)
+                
                     
-                        
-                    Form {
-                        
-                        TextField("Email Address", text: $viewModel.email)
-                            .textFieldStyle(DefaultTextFieldStyle())
-                            .autocorrectionDisabled()
-                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                        
-                        SecureField("Password", text: $viewModel.password)
-                            .textFieldStyle(DefaultTextFieldStyle())
-                        
-                        SButton(title: "Log In", background: Color(hex: colorModel.forestGreen)) {
-                            viewModel.login()
+                    VStack {
+                    
+                        VStack(spacing: 15) {
+                            Spacer()
+                            
+                            TextField("Email Address", text: $viewModel.email)
+                                .textFieldStyle(DefaultTextFieldStyle())
+                                .autocorrectionDisabled()
+                                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                                .focused($focusedField, equals: .email)
+                            
+                            SecureField("Password", text: $viewModel.password)
+                                .textFieldStyle(DefaultTextFieldStyle())
+                                .focused($focusedField, equals: .password)
+                            
+                            SButton(title: "Log In", background: Color(hex: colorModel.forestGreen)) {
+                                viewModel.login()
+                            }
+                            .padding()
+                            .frame(minWidth: 110, idealWidth: 120, maxWidth: 130, minHeight: 80, idealHeight: 80, maxHeight: 80)
+                            
+                            Spacer()
                         }
-                        .padding()
+                        .padding(15)
+                        .padding(.top, 15)
+//                        .padding(.bottom, -25)
                     }
-                    .frame(width: 300, height: 200)
+                    .frame(minWidth: 150, idealWidth: 150, maxWidth: 300, minHeight: 150, idealHeight: 150, maxHeight: 170)
+                    .background(Color(hex: colorModel.lightCream))
                     .cornerRadius(10)
-                    .padding(.top, -20)
-                    .padding(.bottom, -30)
-                    .scrollContentBackground(.hidden)
                     
                     Spacer()
                     
                     VStack {
                         Text("New around here?")
                         NavigationLink("Create an Account", destination: RegisterView())
+                            .foregroundStyle(Color(hex: colorModel.forestGreen))
+                            .bold()
                     }
                     .padding()
                 }
-                Spacer()
-            }
-            .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
-                Button("OK", role: .cancel) {
-                    // Message dismisses
+                .alert(viewModel.errorTitle, isPresented: $viewModel.showAlert, presenting: viewModel.errorMessage) { errorMessage in
+                    Button("OK", role: .cancel) {
+                        // Message dismisses
+                    }
+                } message: { errorMessage in
+                    Text(errorMessage)
                 }
-            } message: { errorMessage in
-                Text(errorMessage)
+//                .padding(.bottom, 25)
             }
             .onTapGesture {
-                print("Dismissing keyboard")
-                hideKeyboard()
+                focusedField = nil // dismiss keyboard
             }
-            .padding(50)
-            .background(Color(hex: colorModel.lightCream))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.all)
-        }
-        .onTapGesture {
-            print("Dismissing keyboard")
-            hideKeyboard()
         }
     }
 }

@@ -111,7 +111,6 @@ struct StatusView: View {
                     .padding(.vertical, 5)
                     .padding(.top, 10)
                     
-                    // TODO: FIX THS SPACING FOR WHEN YOU HAVE NO FRIENDS
                     if !viewModel.friends.isEmpty {
                         List {
                             ForEach(viewModel.friends) {friend in
@@ -127,26 +126,38 @@ struct StatusView: View {
 
                     } else {
                         // TODO: GET SOME FRIENDS message, maybe even create an aesthetic view for this (lowkey thinking like a poro type or smth xdd)
-                        List {
-                            FriendStatusView(username: "eadhana", name: "Esaw", status: "🎰 odds? 🎲")
-                                .listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "nkannan", name: "Naveen", status: "💭recalibrating").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "sa27", name: "Shreyas", status: "grinding🧑‍🔬").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "sirchaturvedi", name: "Amogh", status: "amogging🗿").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "swisswhistler", name: "Matteo", status: "what the sigma 🎹").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "ncbrown", name: "Nash", status: "pickle 🥒").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "amoorthy", name: "Arun", status: "being tall 💂‍♂️").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "folsom", name: "Dorian", status: "ima touch u 😈😈").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "iswearimswiss", name: "Bodo", status: "im swiss 🍫").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "mllover", name: "Gabriel", status: "I😘KARPATHIGHS").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "piggybank49320", name: "Peter", status: "🤑👨‍💻").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "chachashabada", name: "Rohan", status: "rawdrawging🖼️").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "rizzbizz", name: "Ryan", status: "run 🏃‍♂️💨").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "ohsoyummy", name: "Zhangyang", status: "😋 YUMMYYYY 🤤").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "yearnforpengu", name: "Crystal", status: "yearningforpenguins").listRowInsets(EdgeInsets())
-                            FriendStatusView(username: "elgoogler", name: "Mau", status: "🤓 googling 🎶").listRowInsets(EdgeInsets())
+                        VStack(alignment: .center) {
+                            Spacer()
+                            
+                            Text("No friends found :(")
+//                                .font(.system(.title, design: .serif))
+                                .bold()
+                                .foregroundStyle(Color(hex: colorModel.forestGreen))
+                                .frame(maxWidth: .infinity)
+                                
+                            Spacer()
                         }
-                        .listStyle(PlainListStyle())
+                        
+//                        List {
+//                            FriendStatusView(username: "eadhana", name: "Esaw", status: "🎰 odds? 🎲")
+//                                .listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "nkannan", name: "Naveen", status: "💭recalibrating").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "sa27", name: "Shreyas", status: "grinding🧑‍🔬").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "sirchaturvedi", name: "Amogh", status: "amogging🗿").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "swisswhistler", name: "Matteo", status: "what the sigma 🎹").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "ncbrown", name: "Nash", status: "pickle 🥒").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "amoorthy", name: "Arun", status: "being tall 💂‍♂️").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "folsom", name: "Dorian", status: "ima touch u 😈😈").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "iswearimswiss", name: "Bodo", status: "im swiss 🍫").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "mllover", name: "Gabriel", status: "I😘KARPATHIGHS").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "piggybank49320", name: "Peter", status: "🤑👨‍💻").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "chachashabada", name: "Rohan", status: "rawdrawging🖼️").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "rizzbizz", name: "Ryan", status: "run 🏃‍♂️💨").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "ohsoyummy", name: "Zhangyang", status: "😋 YUMMYYYY 🤤").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "yearnforpengu", name: "Crystal", status: "yearningforpenguins").listRowInsets(EdgeInsets())
+//                            FriendStatusView(username: "elgoogler", name: "Mau", status: "🤓 googling 🎶").listRowInsets(EdgeInsets())
+//                        }
+//                        .listStyle(PlainListStyle())
                     }
                     
                     Spacer()

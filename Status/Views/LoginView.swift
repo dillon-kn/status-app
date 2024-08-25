@@ -23,7 +23,6 @@ struct LoginView: View {
                     .edgesIgnoringSafeArea(.all)
                     
                 VStack(spacing: 10) {
-                    
                     Spacer()
                     
                     Text("status")
@@ -34,9 +33,7 @@ struct LoginView: View {
                         .font(.system(.subheadline, design: .serif))
                         .padding(.bottom, 15)
                 
-                    
                     VStack {
-                    
                         VStack(spacing: 15) {
                             Spacer()
                             
@@ -62,7 +59,7 @@ struct LoginView: View {
                         .padding(.top, 15)
 //                        .padding(.bottom, -25)
                     }
-                    .frame(minWidth: 150, idealWidth: 150, maxWidth: 300, minHeight: 150, idealHeight: 150, maxHeight: 170)
+                    .frame(minWidth: 150, idealWidth: 300, maxWidth: 300, minHeight: 150, idealHeight: 150, maxHeight: 170)
                     .background(Color(hex: colorModel.lightCream))
                     .cornerRadius(10)
                     

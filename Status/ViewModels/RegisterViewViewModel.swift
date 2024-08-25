@@ -57,7 +57,69 @@ class RegisterViewViewModel: ObservableObject {
     }
     
     func validateInput() -> Bool {
-        // TODO: DO THIS
+        let firstNameParts = firstName.split(separator: " ")
+        guard firstName.count >= 2, firstName.count <= 50,
+              firstNameParts.allSatisfy({ $0.range(of: "^[a-zA-Z'-]+$", options: .regularExpression) != nil }) else {
+            triggerAlert(title: "Registration Error", message: "Last name must be 2-50 characters and only contain letters, apostrophes, spaces, and hyphens")
+            return false
+        }
+        
+        let lastNameParts = lastName.split(separator: " ")
+        guard lastName.count >= 2, lastName.count <= 50,
+              lastNameParts.allSatisfy({ $0.range(of: "^[a-zA-Z'-]+$", options: .regularExpression) != nil }) else {
+            triggerAlert(title: "Registration Error", message: "Last name must be 2-50 characters and only contain letters, apostrophes, spaces, and hyphens")
+            return false
+        }
+        
+        guard username.count >= 3, username.count <= 30, username.range(of: "^[a-zA-Z0-9_]+$", options: .regularExpression) != nil else {
+            triggerAlert(title: "Registration Error", message: "Username must be 2-50 characters and only contain letters, apostrophes, and hyphens")
+            return false
+        }
+        
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+        guard emailPredicate.evaluate(with: email) else {
+            triggerAlert(title: "Registration Error", message: "Invalid Email")
+            return false
+        }
+        
+        let phoneRegex = "^\\d{10}$"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        guard phonePredicate.evaluate(with: phoneNumber) else {
+            triggerAlert(title: "Registration Error", message: "Invalid Phone Number")
+            return false
+        }
+        
+        guard password.count >= 8 else {
+            triggerAlert(title: "Registration Error", message: "Password must be at least 8 characters")
+            return false
+        }
+                
+        guard password.range(of: ".*[A-Z]+.*", options: .regularExpression) != nil else {
+            triggerAlert(title: "Registration Error", message: "Password must contain at least one uppercase letter")
+            return false
+        }
+        
+        guard password.range(of: ".*[a-z]+.*", options: .regularExpression) != nil else {
+            triggerAlert(title: "Registration Error", message: "Password must contain at least one lowercase letter")
+            return false
+        }
+        
+        guard password.range(of: ".*[0-9]+.*", options: .regularExpression) != nil else {
+            triggerAlert(title: "Registration Error", message: "Password must contain at least one number")
+            return false
+        }
+        
+        guard password.range(of: ".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]+.*", options: .regularExpression) != nil else {
+            triggerAlert(title: "Registration Error", message: "Password must contain at least one special character")
+            return false
+        }
+
+        guard confirmPassword == password else {
+            triggerAlert(title: "Registration Error", message: "Passwords must match")
+            return false
+        }
+        
         return true
     }
     

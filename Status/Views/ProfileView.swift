@@ -34,6 +34,7 @@ struct ProfileView: View {
                                 .foregroundStyle(Color(hex: colorModel.forestGreen))
                         }
                         .padding(.trailing, 3)
+                        .contentShape(Rectangle()) // Expands the tappable area to the entire frame
 
                     }
                     .padding(.top, 20)

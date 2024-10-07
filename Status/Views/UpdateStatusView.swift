@@ -43,33 +43,44 @@ struct UpdateStatusView: View {
                 Text("Update Status")
                     .font(.system(size:32))
                     .bold()
-                    .padding(.bottom, -10)
 
                 
-                Form {
-                    TextField("New Status", text: $viewModel.newStatus)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .frame(minWidth: 100, maxWidth: 350, minHeight: 10, maxHeight: 70)
-                        .multilineTextAlignment(.center)
-                        .padding(7)
-                        .focused($focusedField, equals: .status)
+                VStack {
+                    VStack(spacing: 15) {
+                        Spacer()
+                        
+                        Spacer()
+                        
+                        TextField("New Status", text: $viewModel.newStatus)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .frame(minWidth: 100, maxWidth: 350, minHeight: 10, maxHeight: 70)
+                            .multilineTextAlignment(.center)
+                            .padding(7)
+                            .focused($focusedField, equals: .status)
 
-                    
-                    SButton(
-                        title: "Update Status",
-                        background: Color(hex: colorModel.forestGreen)
-                    ) {
-                        if viewModel.canUpdate() {
-                            viewModel.updateStatus()
-                            newStatusPresented = false
+                        
+                        SButton(
+                            title: "Update Status",
+                            background: Color(hex: colorModel.forestGreen)
+                        ) {
+                            if viewModel.canUpdate() {
+                                viewModel.updateStatus()
+                                newStatusPresented = false
+                            }
                         }
+                        .padding()
+                        .frame(minWidth: 150, idealWidth: 170, maxWidth: 190, minHeight: 80, idealHeight: 80, maxHeight: 80)
+                        
+                        Spacer()
                     }
-                    .padding()
-                
+                    .padding(15)
                 }
-                .frame(width: 350, height: 300)
-                .scrollContentBackground(.hidden)
+                .frame(width: 275, height: 150)
+                .background(Color(hex: colorModel.lightCream))
+                .cornerRadius(10)
+                
+                Spacer()
                 
                 Spacer()
 

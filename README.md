@@ -1,5 +1,3 @@
-# status-app
-
 #  Status App
 
 This app was 1/4 inspired by Instagram notes, 1/4 inspired by Find My from Apple, and 1/2 inspired by a problem that I had. I have the honor of having multiple friends from multiple different friend groups who are interested in going rock climbing with me at the Stanford Climbing Wall. They all say "hey, let me know the next time you go climbing and i'll see if i can pull up." The problem is that there's just so many of them, and to create a group chat just so that I could tell a wide assortment of people that I'm climbing seems rather narcisstic.
